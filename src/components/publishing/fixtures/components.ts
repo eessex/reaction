@@ -79,6 +79,23 @@ export const Authors = [
   },
 ]
 
+export const Campaign = {
+  name: "Artsy",
+}
+
+export const UnitCanvas = {
+  headline: "",
+  body: "Sample copy sed posuere consectetur est at lobortis. Nullam id dolor ultricies vehicula.",
+  link: {
+    text: "Link Example",
+    url: "http://artsy.net",
+  },
+  image_url: "https://artsy-media-uploads.s3.amazonaws.com/YqTtwB7AWqKD95NGItwjJg%2FRachel_Rossin_portrait_2.jpg",
+  logo: "http://files.artsy.net/images/artsy_logo_full_whiteweb_transparent.png",
+  disclaimer:
+    "Donec id elit non mi porta gravida at eget metus. Cras justo odio, dapibus ac facilisis in, egestas eget quam.",
+}
+
 export const Embeds = [
   {
     mobile_height: 1300,
