@@ -11,15 +11,14 @@ interface Props {
   article?: ArticleData
   backgroundColor?: string
   color?: string
-  relatedArticles?: any
 }
 
 export class SeriesLayout extends Component<Props, null> {
   public static defaultProps: Partial<Props>
 
   render () {
-    const { article, backgroundColor, color, relatedArticles } = this.props
-    const { hero_section, sponsor } = article
+    const { article, backgroundColor, color } = this.props
+    const { hero_section, relatedArticles, sponsor } = article
     const backgroundUrl = hero_section && hero_section.url ? hero_section.url : ''
 
     return (
