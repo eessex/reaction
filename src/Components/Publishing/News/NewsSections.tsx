@@ -108,9 +108,10 @@ const getMaxWidth = type => {
 export const NewsSectionContainer = styled(Row)`
   ${(props: ContainerProp) => getMaxWidth(props.type)};
   margin-bottom: 20px;
-
+  margin-left: 0;
+  margin-right: 0;
   ${pMedia.sm`
-    margin: 0 20px 15px;
+    margin: 20px 0 15px;
     padding: 0px;
   `};
 `
@@ -119,7 +120,7 @@ const BylineContainer = styled(Row)`
   max-width: 780px;
   margin-top: 30px;
   ${pMedia.sm`
-    margin: 30px 20px 0;
+    margin: 20px 0 0;
     padding: 0px;
   `};
 `

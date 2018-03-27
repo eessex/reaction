@@ -20,6 +20,7 @@ export interface ArticleProps {
   emailSignupUrl?: string
   headerHeight?: string
   marginTop?: string
+  onExpand?: any
   display?: {
     name: string
     panel: object
