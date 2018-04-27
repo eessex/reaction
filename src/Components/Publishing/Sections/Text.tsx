@@ -2,6 +2,10 @@ import React, { Component } from "react"
 import { ArticleLayout } from "../Typings"
 import { StyledText } from "./StyledText"
 
+import url from "url"
+import { compact, last } from "lodash"
+import cheerio from "cheerio"
+
 interface Props extends React.HTMLProps<HTMLDivElement> {
   color?: string
   html?: string
@@ -13,6 +17,7 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
 
 interface State {
   html: string
+  hasToolTips: boolean
 }
 
 export class Text extends Component<Props, State> {
@@ -22,10 +27,79 @@ export class Text extends Component<Props, State> {
 
   state = {
     html: this.props.html || "",
+    hasToolTips: false,
+  }
+
+  parseHtml = () => {
+    const artists = this.getArtsySlugsFromHTML("artist")
+    const genes = this.getArtsySlugsFromHTML("gene")
+
+    if (artists.length || genes.length) {
+      // this.insertToolTipPlaceholders()
+      this.setState({ hasToolTips: true })
+    }
+  }
+
+  getArtsySlugsFromHTML = model => {
+    const { html } = this.state
+    const $ = cheerio.load(html)
+
+    const slugs = compact($("a")).map(a => {
+      let href = $(a).attr("href")
+      if (href) {
+        if (href.match(`artsy.net/${model}`)) {
+          return last(url.parse(href).pathname.split("/"))
+        } else {
+          return null
+        }
+      } else {
+        return null
+      }
+    })
+    return compact(slugs)
+  }
+
+  replaceLinkWPlaceholder = (model, id, text) => {
+    return `<a id="tooltip" data-type="${model}" data-entity="${id}">${text}</a>`
+  }
+
+  getModel = href => {
+    if (href.match("artsy.net/artist/")) {
+      return "artist"
+    }
+    if (href.match("artsy.net/gene/")) {
+      return "gene"
+    }
+  }
+
+  insertToolTipPlaceholders = html => {
+    const newHtml = `<div>${html}</div>`
+    const $ = cheerio.load(newHtml)
+
+    $("div")
+      .children()
+      .map((i, element) => {
+        if (element.children) {
+          element.children.map(child => {
+            let href = $(child).attr("href")
+            if (href) {
+              const model = this.getModel(href)
+              const text = $(child).text()
+              const id = last(url.parse(href).pathname.split("/"))
+              if (model) {
+                const replace = this.replaceLinkWPlaceholder(model, id, text)
+                $(child).replaceWith(replace)
+              }
+            }
+          })
+        }
+      })
+    return $("div").html()
   }
 
   componentDidMount() {
-    const html = this.htmlMaybeWithContentEnd()
+    const htmlMaybeWithContentEnd = this.htmlMaybeWithContentEnd()
+    const html = this.insertToolTipPlaceholders(htmlMaybeWithContentEnd)
 
     this.setState({ html })
   }
@@ -55,7 +129,7 @@ export class Text extends Component<Props, State> {
 
   render() {
     const { children, color, isContentStart, layout, postscript } = this.props
-    const { html } = this.state
+    const { hasToolTips, html } = this.state
 
     return (
       <StyledText
@@ -66,7 +140,11 @@ export class Text extends Component<Props, State> {
         postscript={postscript}
       >
         {html.length ? (
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          hasToolTips ? (
+            <div>Gimme</div>
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          )
         ) : (
           children
         )}

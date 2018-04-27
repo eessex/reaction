@@ -1,5 +1,10 @@
-import { formatTime, getMediaDate } from "../Constants"
-import { VideoArticle } from "../Fixtures/Articles"
+import { cloneDeep } from "lodash"
+import {
+  formatTime,
+  getMediaDate,
+  getArtsySlugsFromArticle,
+} from "../Constants"
+import { VideoArticle, FeatureArticle } from "../Fixtures/Articles"
 
 describe("getMediaDate", () => {
   let article
@@ -33,5 +38,22 @@ describe("#formatTime", () => {
   it("#formatTime - formats single digit seconds and minutes", () => {
     expect(formatTime(301)).toMatch("05:01")
     expect(formatTime(242)).toMatch("04:02")
+  })
+})
+
+describe("#getArtsySlugsFromArticle", () => {
+  let article = cloneDeep(FeatureArticle)
+
+  it("returns object with arrays of artys ids by model", () => {
+    article.sections.push({
+      type: "text",
+      body:
+        "<p><a href='artsy.net/gene/capitalist-realism'>Capitalist Realism</a></p>",
+    })
+    const slugs = getArtsySlugsFromArticle(article)
+
+    expect(slugs.artists.length).toBe(6)
+    expect(slugs.genes.length).toBe(1)
+    expect(slugs.genes[0]).toBe("capitalist-realism")
   })
 })
