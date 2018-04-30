@@ -1,6 +1,6 @@
 import moment from "moment-timezone"
 import url from "url"
-import { compact, last, map } from "lodash"
+import { compact, last } from "lodash"
 import cheerio from "cheerio"
 import { DateFormat } from "../Publishing/Typings"
 
