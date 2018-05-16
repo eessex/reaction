@@ -123,7 +123,6 @@ export class LinkWithTooltip extends Component<Props, State> {
         onMouseEnter={() => {
           onOpenToolTip(id && id)
         }}
-        onMouseLeave={show ? this.onLeaveLink : undefined}
         ref={link => (this.link = link)}
       >
         {this.props.children}
@@ -140,19 +139,19 @@ export class LinkWithTooltip extends Component<Props, State> {
             positionLeft={toolTipLeft}
           />
         )}
+        {show && <Background onMouseLeave={this.onLeaveLink} />}
       </Link>
     )
   }
 }
 
-interface AProps {
+interface DivProps {
   onMouseEnter: any
-  onMouseLeave: any
 }
 
-const A: StyledFunction<AProps> = styled.div
+const Div: StyledFunction<DivProps> = styled.div
 
-export const Link = A`
+export const Link = Div`
   background-image: none !important;
   border-bottom: 1.25px dashed ${Colors.graySemibold};
   display: inline-block;
@@ -162,4 +161,12 @@ export const Link = A`
   &:hover {
     border-bottom-color: ${Colors.grayDark};
   }
+`
+
+export const Background = styled.div`
+  position: absolute;
+  left: 0;
+  top: -10px;
+  bottom: -10px;
+  right: 0;
 `
