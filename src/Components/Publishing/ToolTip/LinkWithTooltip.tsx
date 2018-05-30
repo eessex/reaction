@@ -95,7 +95,7 @@ export class LinkWithTooltip extends Component<Props, State> {
   }
 
   trackClick = toolTipData => {
-    const { tracking } = this.props
+    const { tracking, url } = this.props
     const { entity, entityType } = toolTipData
 
     if (entity) {
@@ -104,7 +104,7 @@ export class LinkWithTooltip extends Component<Props, State> {
         flow: "tooltip",
         type: `${entityType} stub`,
         context_module: "intext tooltip",
-        destination_path: entity.href,
+        destination_path: url,
       })
     }
   }
@@ -225,6 +225,7 @@ export class LinkWithTooltip extends Component<Props, State> {
             onMouseLeave={this.onLeaveLink}
             href={url}
             target="_blank"
+            onClick={() => this.trackClick(toolTipData)}
           />
         )}
       </Link>
@@ -232,7 +233,7 @@ export class LinkWithTooltip extends Component<Props, State> {
   }
 }
 
-export const PrimaryLink = styled.a.attrs<{ show: boolean }>({})`
+export const PrimaryLink = styled.a.attrs<{ show: boolean; onClick: any }>({})`
   z-index: auto;
   color: black;
   transition: color 0.25s;
