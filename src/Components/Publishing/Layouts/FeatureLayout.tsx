@@ -12,7 +12,6 @@ import { ArticleData } from "../Typings"
 
 export interface ArticleProps {
   article: ArticleData
-  headerHeight?: string
   isMobile?: boolean
   isSuper?: boolean
   marginTop?: string
@@ -24,7 +23,6 @@ export class FeatureLayout extends React.Component<ArticleProps> {
   render() {
     const {
       article,
-      headerHeight,
       isMobile,
       isSuper,
       relatedArticlesForCanvas,
@@ -38,7 +36,6 @@ export class FeatureLayout extends React.Component<ArticleProps> {
       article.hero_section &&
       article.hero_section.type === "fullscreen"
     const sponsor = (seriesArticle && seriesArticle.sponsor) || article.sponsor
-    const height = hasNav ? "100vh" : headerHeight
 
     return (
       <FeatureLayoutContainer>
@@ -50,7 +47,7 @@ export class FeatureLayout extends React.Component<ArticleProps> {
             transparent
           />
         )}
-        <Header article={article} height={height} isMobile={isMobile} />
+        <Header article={article} />
 
         <FeatureLayoutContent className="article-content">
           <Sections

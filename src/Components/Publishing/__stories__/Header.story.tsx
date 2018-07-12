@@ -3,6 +3,7 @@ import _ from "lodash"
 import React from "react"
 
 import { HeroSections } from "../Fixtures/Components"
+import { EditableChild } from "../Fixtures/Helpers"
 import { Header } from "../Header/Header"
 
 import {
@@ -25,10 +26,11 @@ storiesOf("Publishing/Header/Classic", module)
   .add("With children", () => {
     return (
       <div style={{ width: "100%", height: "400px", position: "relative" }}>
-        <Header article={ClassicArticle}>
-          <div>Child 0: Title</div>
-          <p>Child 1: Lead Paragraph</p>
-        </Header>
+        <Header
+          article={ClassicArticle}
+          editLeadParagraph={EditableChild("Lead Paragraph")}
+          editTitle={EditableChild("Title")}
+        />
       </div>
     )
   })
@@ -36,18 +38,19 @@ storiesOf("Publishing/Header/Classic", module)
 storiesOf("Publishing/Header/Standard", module)
   .add("Standard", () => {
     return (
-      <div style={{ width: "100%", height: "400px", position: "relative" }}>
+      <div style={{ width: "100%", position: "relative" }}>
         <Header article={StandardArticle} />
       </div>
     )
   })
-  .add("With Children", () => {
+  .add("Editable", () => {
     return (
-      <div style={{ width: "100%", height: "400px", position: "relative" }}>
-        <Header article={MissingVerticalStandardArticle}>
-          <div>Child 0: Vertical</div>
-          <div>Child 1: Title</div>
-        </Header>
+      <div style={{ width: "100%", position: "relative" }}>
+        <Header
+          article={MissingVerticalStandardArticle}
+          editTitle={EditableChild("Title")}
+          editVertical="Missing Vertical"
+        />
       </div>
     )
   })
@@ -98,18 +101,21 @@ storiesOf("Publishing/Header/Feature/Text", module)
       </div>
     )
   })
-  .add("With children", () => {
+  .add("Editable", () => {
     const article = _.extend({}, FeatureArticle, {
       hero_section: HeroSections[5],
     })
+    delete article.vertical
+
     return (
       <div style={{ width: "100%", position: "relative" }}>
-        <Header article={article}>
-          <div>Child 0: Vertical</div>
-          <div>Child 1: Title</div>
-          <div>Child 2: Deck</div>
-          <div>Child 3: Image</div>
-        </Header>
+        <Header
+          article={article}
+          editDeck={EditableChild("Deck")}
+          editImage={EditableChild("Image")}
+          editTitle={EditableChild("Title")}
+          editVertical="Missing Vertical"
+        />
       </div>
     )
   })
@@ -134,18 +140,21 @@ storiesOf("Publishing/Header/Feature/Split", module)
       </div>
     )
   })
-  .add("With children", () => {
+  .add("Editable", () => {
     const article = _.extend({}, FeatureArticle, {
       hero_section: HeroSections[3],
     })
+    delete article.vertical
+
     return (
       <div style={{ width: "100%", position: "relative" }}>
-        <Header article={article}>
-          <div>Child 0: Vertical</div>
-          <div>Child 1: Title</div>
-          <div>Child 2: Deck</div>
-          <div>Child 3: Image</div>
-        </Header>
+        <Header
+          article={article}
+          editDeck={EditableChild("Deck")}
+          editImage={EditableChild("Image")}
+          editTitle={EditableChild("Title")}
+          editVertical="Missing Vertical"
+        />
       </div>
     )
   })
@@ -170,18 +179,21 @@ storiesOf("Publishing/Header/Feature/Fullscreen", module)
       </div>
     )
   })
-  .add("With Children", () => {
+  .add("Editable", () => {
     const article = _.extend({}, FeatureArticle, {
       hero_section: HeroSections[4],
     })
+    delete article.vertical
+
     return (
       <div style={{ width: "100%", position: "relative" }}>
-        <Header article={article}>
-          <div>Child 0: Vertical</div>
-          <div>Child 1: Title</div>
-          <div>Child 2: Deck</div>
-          <div>Child 3: Image</div>
-        </Header>
+        <Header
+          article={article}
+          editDeck={EditableChild("Deck")}
+          editImage={EditableChild("Image")}
+          editTitle={EditableChild("Title")}
+          editVertical="Missing Vertical"
+        />
       </div>
     )
   })

@@ -112,5 +112,5 @@ export class ArticleWithFullScreen extends React.Component<
 }
 
 const ArticleContainer = styled.div.attrs<ArticleContainerProps>({})`
-  margin-top: ${props => props.marginTop || "50px"};
+  margin-top: ${props => props.marginTop || 0};
 `

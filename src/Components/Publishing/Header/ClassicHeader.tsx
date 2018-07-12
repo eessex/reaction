@@ -7,17 +7,23 @@ import { AuthorDateClassic } from "./AuthorDateClassic"
 interface ClassicHeaderProps {
   article?: any
   date?: string
-  title: any
-  leadParagraph?: any
-  isMobile?: any
+  editLeadParagraph?: any
+  editTitle?: any
 }
 
 export const ClassicHeader: React.SFC<ClassicHeaderProps> = props => {
-  const { article, date, leadParagraph, title } = props
+  const { article, date, editTitle, editLeadParagraph } = props
   return (
     <ClassicHeaderContainer>
-      <Title>{title}</Title>
-      {leadParagraph}
+      <Title>{editTitle || article.title}</Title>
+
+      {editLeadParagraph ? (
+        <LeadParagraph>{editLeadParagraph}</LeadParagraph>
+      ) : (
+        <LeadParagraph
+          dangerouslySetInnerHTML={{ __html: article.lead_paragraph }}
+        />
+      )}
       <AuthorDateClassic
         authors={article.contributing_authors}
         author={article.author}
@@ -35,6 +41,22 @@ const ClassicHeaderContainer = styled.div`
   margin: 40px auto;
   box-sizing: border-box;
   text-align: center;
+
+  ${pMedia.xl`padding: 0 20px;`};
+
+  ${pMedia.xs`
+    text-align: left;
+  `};
+`
+const Title = styled.div`
+  margin-bottom: 30px;
+  ${garamond("s37")};
+  ${pMedia.xs`
+    ${garamond("s34")}
+  `};
+`
+
+export const LeadParagraph = styled.div`
   p,
   > p {
     line-height: 1.35em;
@@ -45,20 +67,10 @@ const ClassicHeaderContainer = styled.div`
     padding-bottom: 30px;
     ${garamond("s19")};
   }
-
-  ${pMedia.xl`padding: 0 20px;`};
   ${pMedia.xs`
-    text-align: left;
     p, > p {
       line-height: 1.35em;
       ${garamond("s17")}
     }
-  `};
-`
-const Title = styled.div`
-  margin-bottom: 30px;
-  ${garamond("s37")};
-  ${pMedia.xs`
-    ${garamond("s34")}
   `};
 `

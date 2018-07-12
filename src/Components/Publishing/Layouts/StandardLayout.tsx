@@ -81,7 +81,7 @@ export class StandardLayout extends React.Component<
                 isTruncated={isTruncated}
                 hideButton={this.removeTruncation}
               >
-                <Header article={article} isMobile={isMobile} />
+                <Header article={article} />
 
                 <StandardLayoutParent>
                   <StandardLayoutContainer>

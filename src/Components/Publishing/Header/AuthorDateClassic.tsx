@@ -3,6 +3,7 @@ import moment from "moment-timezone"
 import React from "react"
 import styled, { StyledFunction } from "styled-components"
 
+// TODO: move to byline
 interface AuthorDateClassicProps {
   authors?: any
   author: any

@@ -8,12 +8,14 @@ import { VerticalOrSeriesTitle } from "../Sections/VerticalOrSeriesTitle"
 interface StandardHeaderProps {
   article?: any
   date?: string
-  title: any
-  vertical?: any
+  editTitle?: any
+  editVertical?: any
 }
 
 export const StandardHeader: React.SFC<StandardHeaderProps> = props => {
-  const { article, date, title, vertical } = props
+  const { article, date, editTitle, editVertical } = props
+  const vertical = (article.vertical && article.vertical.name) || editVertical
+
   return (
     <StandardHeaderParent>
       <StandardHeaderContainer>
@@ -21,7 +23,7 @@ export const StandardHeader: React.SFC<StandardHeaderProps> = props => {
           <VerticalOrSeriesTitle article={article} vertical={vertical} />
         </Vertical>
 
-        <Title>{title}</Title>
+        <Title>{editTitle || article.title}</Title>
         <Byline article={article} layout="standard" date={date && date} />
       </StandardHeaderContainer>
     </StandardHeaderParent>
@@ -30,6 +32,7 @@ export const StandardHeader: React.SFC<StandardHeaderProps> = props => {
 
 const StandardHeaderParent = styled.div`
   margin: 0 40px;
+
   ${pMedia.sm`
     margin: 0 20px;
   `};
@@ -38,21 +41,25 @@ const StandardHeaderParent = styled.div`
 const StandardHeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1250px;
   width: 100%;
+  max-width: 1250px;
   margin: 40px auto;
   box-sizing: border-box;
+
   ${pMedia.sm`
     margin: 30px auto;
   `};
 `
+
 const Title = styled.div`
   ${garamond("s50")};
   margin-bottom: 50px;
+
   ${pMedia.sm`
     ${garamond("s34")}
   `};
 `
+
 const Vertical = styled.div`
   margin-bottom: 10px;
 `
