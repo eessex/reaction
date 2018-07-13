@@ -48,29 +48,31 @@ const ClassicHeaderContainer = styled.div`
     text-align: left;
   `};
 `
-const Title = styled.div`
+
+export const Title = styled.div`
   margin-bottom: 30px;
   ${garamond("s37")};
+
   ${pMedia.xs`
     ${garamond("s34")}
   `};
 `
 
 export const LeadParagraph = styled.div`
-  p,
-  > p {
-    line-height: 1.35em;
-    text-align: left;
-    max-width: 580px;
-    width: 100%;
-    margin: 0 auto;
-    padding-bottom: 30px;
-    ${garamond("s19")};
+  ${garamond("s19")};
+  line-height: 1.35em;
+  text-align: left;
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 30px;
+
+  p {
+    margin: 0;
   }
+
   ${pMedia.xs`
-    p, > p {
-      line-height: 1.35em;
-      ${garamond("s17")}
-    }
+    ${garamond("s17")}
+    line-height: 1.35em;
   `};
 `

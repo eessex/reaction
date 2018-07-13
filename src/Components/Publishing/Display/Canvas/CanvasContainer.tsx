@@ -81,19 +81,14 @@ export class CanvasContainerComponent extends React.Component<
 
   render() {
     const { campaign, disclaimer, size, unit } = this.props
-    const {
-      assets,
-      cover_image_url,
-      layout,
-      link: { url },
-    } = unit
+    const { assets, cover_image_url, layout, link } = unit
     const isOverlay = layout === "overlay"
     const isSlideshow = layout === "slideshow"
 
     // Props for Link units
     const linkProps = {
       onClick: this.openLink,
-      href: url,
+      href: link.url,
       target: "_blank",
       containerWidth: size.width,
       layout,
@@ -107,7 +102,7 @@ export class CanvasContainerComponent extends React.Component<
 
     // Overlay
     if (isOverlay) {
-      const backgroundUrl = assets[0].url
+      const backgroundUrl = assets[0].url || ""
 
       return (
         <CanvasLink {...linkProps}>
@@ -136,25 +131,28 @@ export class CanvasContainerComponent extends React.Component<
       // Video / Image
     } else {
       const [asset] = unit.assets
-      const isVideo = asset && asset.url.includes("mp4")
+      const url = (asset && asset.url) || ""
+      const isVideo = url.includes("mp4")
 
       return (
         <CanvasLink {...linkProps}>
           {isVideo ? (
             <CanvasVideo
               coverUrl={cover_image_url}
-              src={asset.url}
+              src={url}
               campaign={campaign}
               onInit={h => (this.canvasVideoHandlers = h)}
             />
           ) : (
-            <Image
-              src={crop(asset.url, {
-                width: 1200,
-                height: 760,
-                isDisplayAd: true,
-              })}
-            />
+            url && (
+              <Image
+                src={crop(url, {
+                  width: 1200,
+                  height: 760,
+                  isDisplayAd: true,
+                })}
+              />
+            )
           )}
 
           <StandardContainer>

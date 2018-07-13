@@ -1,6 +1,7 @@
 import React from "react"
 import BasicHeader from "./Feature/BasicHeader"
 import { FullscreenHeader } from "./Feature/FullscreenHeader"
+import { SplitHeader } from "./Feature/SplitHeader"
 import { TextHeader } from "./Feature/TextHeader"
 
 export interface FeatureHeaderProps {
@@ -24,6 +25,9 @@ export const FeatureHeader: React.SFC<FeatureHeaderProps> = props => {
     }
     case "fullscreen": {
       return <FullscreenHeader {...props} />
+    }
+    case "split": {
+      return <SplitHeader {...props} />
     }
     default: {
       return <TextHeader {...props} />
