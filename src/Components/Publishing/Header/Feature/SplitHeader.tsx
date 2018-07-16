@@ -3,10 +3,12 @@ import React from "react"
 import { Col, Row } from "react-styled-flexboxgrid"
 import styled from "styled-components"
 import { resize } from "../../../../Utils/resizer"
+import { pMedia } from "../../../Helpers"
 import { BylineContainer } from "../../Byline/Byline"
 import { FeatureHeaderProps } from "../FeatureHeader"
 import { HeaderText, TextContainer } from "./HeaderText"
-import { SubHeader } from "./HeaderTextSub"
+import { Title } from "./HeaderTextPrimary"
+import { HeaderTextSub, SubHeader } from "./HeaderTextSub"
 
 export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
   const { article, date, editDeck, editImage, editVertical, editTitle } = props
@@ -18,7 +20,7 @@ export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
 
   return (
     <FeatureHeaderContainer hasNav={seriesArticle && true}>
-      <HeaderTextContainer>
+      <HeaderTextContainer xs={12} sm={5}>
         <HeaderText
           article={article}
           date={date}
@@ -28,9 +30,9 @@ export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
         />
       </HeaderTextContainer>
 
-      <FeatureAssetContainer src={src}>
+      <FeatureAssetContainer src={src} xs={12} sm={6}>
         {editImage && <EditImage>{editImage}</EditImage>}
-        {isVideo && (
+        {isVideo ? (
           <FeatureVideo
             src={url}
             autoPlay
@@ -39,15 +41,24 @@ export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
             muted
             playsInline
           />
+        ) : (
+          src && <Img src={src} />
         )}
       </FeatureAssetContainer>
+      <HeaderTextContainer xs={12} sm={false}>
+        <HeaderTextSub
+          article={article}
+          date={date}
+          editDeck={editDeck}
+          editVertical={editVertical}
+          editTitle={editTitle}
+        />
+      </HeaderTextContainer>
     </FeatureHeaderContainer>
   )
 }
 
 const HeaderTextContainer = Col.extend`
-  width: 50%;
-  max-width: 50%;
   padding-left: ${space(2)}px;
   padding-right: ${space(2)}px;
   padding-top: ${space(2)}px;
@@ -65,17 +76,30 @@ const HeaderTextContainer = Col.extend`
   ${BylineContainer} {
     margin-top: ${space(3)}px;
   }
+
+  ${pMedia.sm`
+    ${Title} {
+      margin-bottom: 20px;
+    }
+    ${TextContainer} {
+      ${SubHeader} {
+        display: none;
+      }
+    }
+  `};
 `
 
 const FeatureVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  ${pMedia.sm`
+    height: auto;
+  `};
 `
 
 const FeatureAssetContainer = Col.extend.attrs<{ src?: string }>({})`
   height: 100%;
-  width: 50%;
   flex: 1;
   overflow: hidden;
   margin: 0 ${space(2)}px;
@@ -90,12 +114,26 @@ const FeatureAssetContainer = Col.extend.attrs<{ src?: string }>({})`
     background-repeat: no-repeat;
     background-position: center;
   `};
+  ${pMedia.sm`
+    height: fit-content;
+    ${props =>
+      props.src &&
+      `
+      background-image: none;
+      height: fit-content;
+    `}
+  `};
+`
+
+const Img = styled.img`
+  width: 100%;
 `
 
 const FeatureHeaderContainer = Row.extend.attrs<{ hasNav?: boolean }>({})`
   margin-left: 0;
   margin-right: 0;
   height: ${props => (props.hasNav ? "100vh" : "calc(100vh - 50px)")};
+  justify-content: space-between;
   ${props =>
     !props.hasNav &&
     `
