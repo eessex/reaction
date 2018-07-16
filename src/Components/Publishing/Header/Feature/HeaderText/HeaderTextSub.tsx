@@ -1,8 +1,8 @@
 import { Sans } from "@artsy/palette"
 import React from "react"
 import styled from "styled-components"
-import { pMedia } from "../../../Helpers"
-import { Byline } from "../../Byline/Byline"
+import { pMedia } from "../../../../Helpers"
+import { Byline } from "../../../Byline/Byline"
 import { HeaderTextProps } from "./HeaderText"
 
 export const HeaderTextSub: React.SFC<HeaderTextProps> = props => {

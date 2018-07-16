@@ -2,6 +2,7 @@ import { mount } from "enzyme"
 import "jest-styled-components"
 import _ from "lodash"
 import React from "react"
+import { EditableChild } from "../../Fixtures/Helpers"
 import { Header } from "../Header"
 
 import {
@@ -30,12 +31,13 @@ describe("Header", () => {
     expect(header.html()).toContain("May 19, 2017 9:09 am")
   })
 
-  it("renders children on classic article", () => {
+  it("renders edit props on classic article", () => {
     const header = mount(
-      <Header article={ClassicArticle}>
-        <div>Title Child</div>
-        <div>Lead Paragraph Child</div>
-      </Header>
+      <Header
+        article={ClassicArticle}
+        editLeadParagraph={EditableChild("Lead Paragraph")}
+        editTitle={EditableChild("Title")}
+      />
     )
     expect(header.html()).toContain("Title Child")
     expect(header.html()).toContain("Lead Paragraph Child")
@@ -47,7 +49,7 @@ describe("Header", () => {
     expect(header.html()).toContain("New York's Next Art District")
   })
 
-  it("renders children on standard article", () => {
+  it("renders edit props on standard article", () => {
     const header = mount(
       <Header article={MissingVerticalStandardArticle}>
         <div>Vertical Child</div>
@@ -68,7 +70,7 @@ describe("Header", () => {
     )
   })
 
-  it("renders children on feature article", () => {
+  it("renders edit props on feature article", () => {
     const MissingVerticalFeatureArticle = _.extend({}, FeatureArticle, {
       vertical: null,
     })

@@ -12,9 +12,8 @@ import {
   VIDEO_RATIO,
 } from "../../Sections/Video"
 import { FeatureHeaderProps } from "../FeatureHeader"
-import { HeaderText } from "./HeaderText"
-import { Title } from "./HeaderTextPrimary"
-import { Deck, SubHeader } from "./HeaderTextSub"
+import { HeaderText, Title } from "./HeaderText/HeaderText"
+import { Deck, SubHeader } from "./HeaderText/HeaderTextSub"
 
 interface State {
   isPlaying: boolean

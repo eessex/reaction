@@ -3,8 +3,7 @@ import moment from "moment-timezone"
 import React from "react"
 import styled, { StyledFunction } from "styled-components"
 
-// TODO: move to byline
-interface AuthorDateClassicProps {
+interface ClassicBylineProps {
   authors?: any
   author: any
   date?: string
@@ -51,13 +50,13 @@ const getDate = date =>
     .tz("America/New_York")
     .format("MMM D, YYYY h:mm a")
 
-export const AuthorDateClassic: React.SFC<AuthorDateClassicProps> = props => {
+export const ClassicByline: React.SFC<ClassicBylineProps> = props => {
   const { authors, author, date } = props
   return (
-    <AuthorDateClassicContainer>
+    <ClassicBylinePropsContainer>
       {getAuthorByline(authors, author)}
       <TextSm color="#666">{getDate(date)}</TextSm>
-    </AuthorDateClassicContainer>
+    </ClassicBylinePropsContainer>
   )
 }
 
@@ -67,7 +66,7 @@ const TextSm = div`
   ${avantgarde("s11")}
   color: ${props => (props.color ? props.color : "#000")};
 `
-const AuthorDateClassicContainer = styled.div`
+const ClassicBylinePropsContainer = styled.div`
   display: block;
   ${avantgarde("s13")};
 `

@@ -1,8 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { resize } from "../../../../Utils/resizer"
-import { HeaderText } from "./HeaderText"
-import { Title } from "./HeaderTextPrimary"
+import { HeaderText, Title } from "./HeaderText/HeaderText"
 
 interface FeatureHeaderProps {
   article?: any

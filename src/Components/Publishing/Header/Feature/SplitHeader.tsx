@@ -6,9 +6,8 @@ import { resize } from "../../../../Utils/resizer"
 import { pMedia } from "../../../Helpers"
 import { BylineContainer } from "../../Byline/Byline"
 import { FeatureHeaderProps } from "../FeatureHeader"
-import { HeaderText, TextContainer } from "./HeaderText"
-import { Title } from "./HeaderTextPrimary"
-import { HeaderTextSub, SubHeader } from "./HeaderTextSub"
+import { HeaderText, TextContainer, Title } from "./HeaderText/HeaderText"
+import { HeaderTextSub, SubHeader } from "./HeaderText/HeaderTextSub"
 
 export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
   const { article, date, editDeck, editImage, editVertical, editTitle } = props

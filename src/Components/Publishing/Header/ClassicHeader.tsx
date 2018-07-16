@@ -2,7 +2,7 @@ import { garamond } from "Assets/Fonts"
 import React from "react"
 import styled from "styled-components"
 import { pMedia } from "../../Helpers"
-import { AuthorDateClassic } from "./AuthorDateClassic"
+import { ClassicByline } from "../Byline/ClassicByline"
 
 interface ClassicHeaderProps {
   article?: any
@@ -24,7 +24,7 @@ export const ClassicHeader: React.SFC<ClassicHeaderProps> = props => {
           dangerouslySetInnerHTML={{ __html: article.lead_paragraph }}
         />
       )}
-      <AuthorDateClassic
+      <ClassicByline
         authors={article.contributing_authors}
         author={article.author}
         date={date ? date : article.published_at}
