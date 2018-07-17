@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { resize } from "../../../../Utils/resizer"
+import { EditImage } from "../FeatureHeader"
 import { HeaderText, Title } from "./HeaderText/HeaderText"
 
 interface FeatureHeaderProps {
@@ -31,7 +32,7 @@ export const TextHeader: React.SFC<FeatureHeaderProps> = props => {
       />
 
       <Asset>
-        {editImage}
+        {editImage && <EditImage>{editImage}</EditImage>}
         {url.includes("mp4") ? (
           <video
             src={url}

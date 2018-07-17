@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { resize } from "../../../../Utils/resizer"
 import { pMedia } from "../../../Helpers"
 import { PartnerInline } from "../../Partner/PartnerInline"
-import { FeatureHeaderProps } from "../FeatureHeader"
+import { EditImage, FeatureHeaderProps } from "../FeatureHeader"
 import { HeaderText } from "./HeaderText/HeaderText"
 
 // TODO: track partner superarticle link clicks
@@ -23,7 +23,7 @@ export const FullscreenHeader: React.SFC<FeatureHeaderProps> = props => {
   return (
     <FeatureHeaderContainer hasNav={seriesArticle && true}>
       <FeatureAssetContainer src={src}>
-        {editImage && editImage}
+        {editImage && <EditImage>{editImage}</EditImage>}
         {isVideo && (
           <FeatureVideo
             src={url}

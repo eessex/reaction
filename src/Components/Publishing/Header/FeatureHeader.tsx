@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 import BasicHeader from "./Feature/BasicHeader"
 import { FullscreenHeader } from "./Feature/FullscreenHeader"
 import { SplitHeader } from "./Feature/SplitHeader"
@@ -34,3 +35,7 @@ export const FeatureHeader: React.SFC<FeatureHeaderProps> = props => {
     }
   }
 }
+
+export const EditImage = styled.div`
+  position: absolute;
+`

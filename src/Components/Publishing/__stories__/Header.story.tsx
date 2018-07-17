@@ -23,7 +23,7 @@ storiesOf("Publishing/Header/Classic", module)
       </div>
     )
   })
-  .add("With children", () => {
+  .add("Editable", () => {
     return (
       <div style={{ width: "100%", height: "400px", position: "relative" }}>
         <Header
@@ -76,6 +76,24 @@ storiesOf("Publishing/Header/Feature/Basic", module)
       <div>
         <div style={{ width: "100%", position: "relative" }}>
           <Header article={BasicArticle} />
+        </div>
+      </div>
+    )
+  })
+  .add("Editable", () => {
+    const article = _.clone(BasicArticle)
+    article.hero_section.url = "https://vimeo.com/238843720"
+
+    return (
+      <div>
+        <div style={{ width: "100%", position: "relative" }}>
+          <Header
+            article={BasicArticle}
+            editDeck={EditableChild("Deck")}
+            editImage={EditableChild("Image")}
+            editTitle={EditableChild("Title")}
+            editVertical="Missing Vertical"
+          />
         </div>
       </div>
     )

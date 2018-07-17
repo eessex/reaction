@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { resize } from "../../../../Utils/resizer"
 import { pMedia } from "../../../Helpers"
 import { BylineContainer } from "../../Byline/Byline"
-import { FeatureHeaderProps } from "../FeatureHeader"
+import { EditImage, FeatureHeaderProps } from "../FeatureHeader"
 import { HeaderText, TextContainer, Title } from "./HeaderText/HeaderText"
 import { HeaderTextSub, SubHeader } from "./HeaderText/HeaderTextSub"
 
@@ -29,7 +29,7 @@ export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
         />
       </HeaderTextContainer>
 
-      <FeatureAssetContainer src={src} xs={12} sm={6}>
+      <FeatureAssetContainer xs={12} sm={6}>
         {editImage && <EditImage>{editImage}</EditImage>}
         {isVideo ? (
           <FeatureVideo
@@ -41,7 +41,11 @@ export const SplitHeader: React.SFC<FeatureHeaderProps> = props => {
             playsInline
           />
         ) : (
-          src && <Img src={src} />
+          src && (
+            <ImageContainer src={src}>
+              <Img src={src} />
+            </ImageContainer>
+          )
         )}
       </FeatureAssetContainer>
       <HeaderTextContainer xs={12} sm={false}>
@@ -97,22 +101,25 @@ const FeatureVideo = styled.video`
   `};
 `
 
-const FeatureAssetContainer = Col.extend.attrs<{ src?: string }>({})`
-  height: 100%;
+const FeatureAssetContainer = Col.extend`
   flex: 1;
   overflow: hidden;
   margin: 0 ${space(2)}px;
   padding-left: 0;
   padding-right: 0;
 
-  ${props =>
-    props.src &&
-    `
-    background-image: url(${props.src});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  ${pMedia.sm`
+    height: fit-content;
   `};
+`
+
+const ImageContainer = styled.div.attrs<{ src?: string }>({})`
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+
   ${pMedia.sm`
     height: fit-content;
     ${props =>
@@ -138,8 +145,4 @@ const FeatureHeaderContainer = Row.extend.attrs<{ hasNav?: boolean }>({})`
     `
     margin-top: 50px;
   `};
-`
-
-export const EditImage = styled.div`
-  position: absolute;
 `

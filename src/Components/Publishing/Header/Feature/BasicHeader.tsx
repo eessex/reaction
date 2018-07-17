@@ -11,7 +11,7 @@ import {
   Video,
   VIDEO_RATIO,
 } from "../../Sections/Video"
-import { FeatureHeaderProps } from "../FeatureHeader"
+import { EditImage, FeatureHeaderProps } from "../FeatureHeader"
 import { HeaderText, Title } from "./HeaderText/HeaderText"
 import { Deck, SubHeader } from "./HeaderText/HeaderTextSub"
 
@@ -34,13 +34,21 @@ export class BasicHeader extends React.Component<
   }
 
   render() {
-    const { article, date, editTitle, editVertical, editDeck } = this.props
+    const {
+      article,
+      date,
+      editImage,
+      editTitle,
+      editVertical,
+      editDeck,
+    } = this.props
     const { hero_section } = article
     const { url } = hero_section
     const hasVideo = url && isValidVideoUrl(url)
 
     return (
       <BasicHeaderContainer hasVideo={hasVideo}>
+        {editImage && <EditImage>{editImage}</EditImage>}
         {hasVideo && (
           <VideoContainer onClick={this.trackVideoPlay}>
             <Video section={hero_section} layout="feature" />
@@ -66,6 +74,7 @@ const BasicHeaderContainer = styled.div.attrs<{ hasVideo: boolean }>({})`
   text-align: center;
   margin-top: ${props => (props.hasVideo ? "30" : "70")}px;
   padding: 20px;
+  position: relative;
 
   ${CoverImage}, ${IFrame} {
     width: 100%;
