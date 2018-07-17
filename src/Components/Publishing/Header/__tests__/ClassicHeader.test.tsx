@@ -3,6 +3,7 @@ import React from "react"
 import renderer from "react-test-renderer"
 import { ClassicByline } from "../../Byline/ClassicByline"
 import { ClassicArticle, StandardArticle } from "../../Fixtures/Articles"
+import { EditableChild } from "../../Fixtures/Helpers"
 import { Header } from "../Header"
 
 describe("Classic Header", () => {
@@ -14,10 +15,11 @@ describe("Classic Header", () => {
   it("renders classic header with children properly", () => {
     const header = renderer
       .create(
-        <Header article={StandardArticle}>
-          <div>Child 0: Title</div>
-          <div>Child 1: Lead Paragraph</div>
-        </Header>
+        <Header
+          article={StandardArticle}
+          editLeadParagraph={EditableChild("Lead Paragraph")}
+          editTitle={EditableChild("Title")}
+        />
       )
       .toJSON()
     expect(header).toMatchSnapshot()

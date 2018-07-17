@@ -10,7 +10,7 @@ export const HeaderTextSub: React.SFC<HeaderTextProps> = props => {
   const { hero_section } = article
 
   const type = (hero_section && hero_section.type) || "text"
-  const deck = (hero_section && hero_section.deck) || editDeck
+  const deck = editDeck || (hero_section && hero_section.deck)
 
   return (
     <SubHeader>

@@ -431,14 +431,17 @@ exports[`Standard Header renders standard header with children properly 1`] = `
         fontSize={14}
       >
         <span>
-          Art Market
+          Missing Vertical
         </span>
       </div>
     </div>
     <div
       className="c5"
     >
-      New York's Next Art District
+      <div>
+        Child 
+        Title
+      </div>
     </div>
     <div
       className="Byline c6"

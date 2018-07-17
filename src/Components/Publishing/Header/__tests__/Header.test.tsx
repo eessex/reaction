@@ -39,8 +39,8 @@ describe("Header", () => {
         editTitle={EditableChild("Title")}
       />
     )
-    expect(header.html()).toContain("Title Child")
-    expect(header.html()).toContain("Lead Paragraph Child")
+    expect(header.html()).toContain("Child Title")
+    expect(header.html()).toContain("Child Lead Paragraph")
   })
 
   it("renders vertical and title on standard article", () => {
@@ -51,13 +51,14 @@ describe("Header", () => {
 
   it("renders edit props on standard article", () => {
     const header = mount(
-      <Header article={MissingVerticalStandardArticle}>
-        <div>Vertical Child</div>
-        <div>Title Child</div>
-      </Header>
+      <Header
+        article={MissingVerticalStandardArticle}
+        editTitle={EditableChild("Title")}
+        editVertical="Missing Vertical"
+      />
     )
-    expect(header.html()).toContain("Vertical Child")
-    expect(header.html()).toContain("Title Child")
+    expect(header.html()).toContain("Missing Vertical")
+    expect(header.html()).toContain("Child Title")
   })
 
   it("renders vertical, title, deck, and image on feature article", () => {
@@ -75,16 +76,17 @@ describe("Header", () => {
       vertical: null,
     })
     const header = mount(
-      <Header article={MissingVerticalFeatureArticle}>
-        <div>Vertical Child</div>
-        <div>Title Child</div>
-        <div>Deck Child</div>
-        <div>Image Child</div>
-      </Header>
+      <Header
+        article={MissingVerticalFeatureArticle}
+        editDeck={EditableChild("Deck")}
+        editImage={EditableChild("Image")}
+        editTitle={EditableChild("Title")}
+        editVertical="Missing Vertical"
+      />
     )
-    expect(header.html()).toContain("Vertical Child")
-    expect(header.html()).toContain("Title Child")
-    expect(header.html()).toContain("Deck Child")
-    expect(header.html()).toContain("Image Child")
+    expect(header.html()).toContain("Missing Vertical")
+    expect(header.html()).toContain("Child Title")
+    expect(header.html()).toContain("Child Deck")
+    expect(header.html()).toContain("Child Image")
   })
 })

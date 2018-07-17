@@ -10,6 +10,7 @@ import {
   SuperArticle,
 } from "../../Fixtures/Articles"
 import { HeroSections } from "../../Fixtures/Components"
+import { EditableChild } from "../../Fixtures/Helpers"
 import { VerticalOrSeriesTitle } from "../../Sections/VerticalOrSeriesTitle"
 import { Header } from "../Header"
 
@@ -46,12 +47,13 @@ describe("feature", () => {
     })
     const header = renderer
       .create(
-        <Header article={article}>
-          <div>Child 0: Vertical</div>
-          <div>Child 1: Title</div>
-          <div>Child 2: Deck</div>
-          <div>Child 3: Image</div>
-        </Header>
+        <Header
+          article={article}
+          editDeck={EditableChild("Deck")}
+          editImage={EditableChild("Image")}
+          editTitle={EditableChild("Title")}
+          editVertical="Missing Vertical"
+        />
       )
       .toJSON()
     expect(header).toMatchSnapshot()
