@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { resize } from "../../../../Utils/resizer"
 import { pMedia } from "../../../Helpers"
 import { PartnerInline } from "../../Partner/PartnerInline"
+import { Vertical } from "../../Sections/VerticalOrSeriesTitle"
 import { EditImage, FeatureHeaderProps } from "../FeatureHeader"
 import { HeaderText } from "./HeaderText/HeaderText"
 
@@ -84,6 +85,11 @@ const HeaderTextContainer = styled.div.attrs<{ hasLogos?: boolean }>({})`
   justify-content: ${props => (props.hasLogos ? "space-between" : "flex-end")};
   .PartnerInline {
     position: relative;
+  }
+  ${Vertical} {
+    a {
+      color: white;
+    }
   }
   ${pMedia.xs`
     padding: 20px;
