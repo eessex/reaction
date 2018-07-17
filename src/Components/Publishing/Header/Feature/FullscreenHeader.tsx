@@ -6,7 +6,6 @@ import { PartnerInline } from "../../Partner/PartnerInline"
 import { EditImage, FeatureHeaderProps } from "../FeatureHeader"
 import { HeaderText } from "./HeaderText/HeaderText"
 
-// TODO: track partner superarticle link clicks
 export const FullscreenHeader: React.SFC<FeatureHeaderProps> = props => {
   const { article, date, editDeck, editImage, editVertical, editTitle } = props
   const {
@@ -22,7 +21,7 @@ export const FullscreenHeader: React.SFC<FeatureHeaderProps> = props => {
 
   return (
     <FeatureHeaderContainer hasNav={seriesArticle && true}>
-      <FeatureAssetContainer src={src}>
+      <FeatureAssetContainer src={src ? src : undefined}>
         {editImage && <EditImage>{editImage}</EditImage>}
         {isVideo && (
           <FeatureVideo
@@ -46,6 +45,12 @@ export const FullscreenHeader: React.SFC<FeatureHeaderProps> = props => {
             }
             url={super_article.partner_logo_link}
             color="white"
+            trackingData={{
+              label: "Clicked primary partner logo",
+              impression_type: "sa_primary_logo",
+              destination_path: super_article.partner_logo_link,
+              context_type: "article_fixed",
+            }}
           />
         )}
         <HeaderText
