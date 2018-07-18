@@ -1,16 +1,16 @@
+import Colors from "Assets/Colors"
 import { get, omit } from "lodash"
 import React from "react"
 import styled from "styled-components"
-import Colors from "../../../Assets/Colors"
 import { ResponsiveDeprecated } from "../../../Utils/ResponsiveDeprecated"
 import { pMedia } from "../../Helpers"
 import { ArticleProps } from "../Article"
 import { DisplayCanvas } from "../Display/Canvas"
 import { DisplayPanel } from "../Display/DisplayPanel"
 import { Header } from "../Header/Header"
-import { ReadMore } from "../ReadMore/ReadMoreButton"
+import ReadMore from "../ReadMore/ReadMoreButton"
 import { ReadMoreWrapper } from "../ReadMore/ReadMoreWrapper"
-import { RelatedArticlesCanvas } from "../RelatedArticles/RelatedArticlesCanvas"
+import RelatedArticlesCanvas from "../RelatedArticles/RelatedArticlesCanvas"
 import { Sections } from "../Sections/Sections"
 import { Sidebar } from "./Components/Sidebar"
 
@@ -31,6 +31,7 @@ export class StandardLayout extends React.Component<
 
   constructor(props) {
     super(props)
+
     this.state = {
       isTruncated: props.isTruncated || false,
     }
@@ -53,7 +54,9 @@ export class StandardLayout extends React.Component<
     const { isTruncated } = this.state
 
     const campaign = omit(display, "panel", "canvas")
-    const displayOverflows = display && display.canvas.layout === "slideshow"
+    const displayOverflows = display
+      ? display.canvas.layout === "slideshow"
+      : false
 
     return (
       // FIXME: Update with new version
@@ -99,18 +102,14 @@ export class StandardLayout extends React.Component<
                   </StandardLayoutContainer>
                 </StandardLayoutParent>
 
-                {/*
-                  Canvas: Related Articles
-                */}
                 {relatedArticlesForCanvas && (
-                  <div>
-                    <LineBreak />
+                  <RelatedContainer hasBorder={display && true}>
                     <RelatedArticlesCanvas
                       articles={relatedArticlesForCanvas}
                       isMobile={isMobile}
                       vertical={article.vertical}
                     />
-                  </div>
+                  </RelatedContainer>
                 )}
               </ReadMoreWrapper>
 
@@ -123,29 +122,17 @@ export class StandardLayout extends React.Component<
                 Footer
               */}
               {display && (
-                <div>
-                  <LineBreak />
-
-                  {displayOverflows ? (
-                    <div>
-                      <DisplayCanvas
-                        unit={display.canvas}
-                        campaign={campaign}
-                        article={article}
-                        renderTime={renderTime}
-                      />
-                    </div>
-                  ) : (
-                    <FooterContainer>
-                      <DisplayCanvas
-                        unit={display.canvas}
-                        campaign={campaign}
-                        article={article}
-                        renderTime={renderTime}
-                      />
-                    </FooterContainer>
-                  )}
-                </div>
+                <DisplayContainer
+                  hasMargin={!displayOverflows}
+                  hasBorder={isTruncated}
+                >
+                  <DisplayCanvas
+                    unit={display.canvas}
+                    campaign={campaign}
+                    article={article}
+                    renderTime={renderTime}
+                  />
+                </DisplayContainer>
               )}
             </div>
           )
@@ -174,9 +161,25 @@ const LineBreak = styled.div`
   width: 100%;
 `
 
-const FooterContainer = styled.div`
-  margin: 0 40px;
+export const RelatedContainer = styled.div.attrs<{
+  hasBorder?: boolean
+}>({})`
+  ${props =>
+    props.hasBorder &&
+    `
+    border-top: 1px solid rgb(229, 229, 229);
+    border-bottom: 1px solid rgb(229, 229, 229);
+  `} margin: 80px 0 0;
+`
+
+const DisplayContainer = styled.div.attrs<{
+  hasBorder?: boolean
+  hasMargin?: boolean
+}>({})`
+  padding: ${props => (props.hasMargin ? "0 40px" : "0")};
+  border-top: ${props =>
+    props.hasBorder ? "1px solid rgb(229, 229, 229)" : "none"};
   ${pMedia.sm`
-    margin: 0 20px;
+    padding: 0 20px;
   `};
 `

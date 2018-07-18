@@ -43,7 +43,7 @@ export class DisplayCanvas extends React.Component<DisplayCanvasProps> {
 
   render() {
     const { unit, campaign, article, renderTime } = this.props
-    const url = get(unit, "link.url", "")
+    const url = get(unit, "link.url", "") || ""
     const disclaimer = (
       <Disclaimer layout={unit.layout}>{unit.disclaimer}</Disclaimer>
     )
@@ -78,19 +78,18 @@ export class DisplayCanvas extends React.Component<DisplayCanvasProps> {
 
 const Div: StyledFunction<DivProps> = styled.div
 
-const DisplayContainer = Div`
+export const DisplayContainer = Div`
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: ${props => (props.layout === "slideshow" ? "100%;" : "1250px;")}
   margin: 0 auto;
-  margin-bottom: -44px; // Offset default force margin; FIXME: This kind of stuff needs to be globally addressed
+  padding-bottom: 20px;
   box-sizing: border-box;
   a {
     text-decoration: none;
   }
   ${pMedia.sm`
-    margin-bottom: 0;
     min-height: 400px;
   `}
 `

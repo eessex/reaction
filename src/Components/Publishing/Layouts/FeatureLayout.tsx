@@ -6,7 +6,7 @@ import {
   ArticleCardsBlock,
   ArticleCardsContainer,
 } from "../RelatedArticles/ArticleCards/Block"
-import { RelatedArticlesCanvas } from "../RelatedArticles/RelatedArticlesCanvas"
+import RelatedArticlesCanvas from "../RelatedArticles/RelatedArticlesCanvas"
 import { Sections } from "../Sections/Sections"
 import { ArticleData } from "../Typings"
 
@@ -17,6 +17,7 @@ export interface ArticleProps {
   marginTop?: string
   relatedArticlesForCanvas?: any
   showTooltips?: boolean
+  tracking?: any
 }
 
 export class FeatureLayout extends React.Component<ArticleProps> {
@@ -60,10 +61,12 @@ export class FeatureLayout extends React.Component<ArticleProps> {
         {relatedArticlesForCanvas &&
           !isSuper &&
           !seriesArticle && (
-            <RelatedArticlesCanvas
-              articles={relatedArticlesForCanvas}
-              vertical={article.vertical}
-            />
+            <div>
+              <RelatedArticlesCanvas
+                articles={relatedArticlesForCanvas}
+                vertical={article.vertical}
+              />
+            </div>
           )}
         {seriesArticle && <ArticleCardsBlock {...this.props} />}
       </FeatureLayoutContainer>

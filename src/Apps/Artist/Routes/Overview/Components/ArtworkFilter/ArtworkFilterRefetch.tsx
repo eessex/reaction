@@ -16,7 +16,10 @@ class ArtworkGridRefetchContainerWrapper extends React.Component<Props> {
 
   componentDidUpdate(prevProps) {
     Object.keys(this.props.filters).forEach(key => {
-      if (this.props.filters[key] !== prevProps.filters[key]) {
+      if (
+        key !== "page" &&
+        this.props.filters[key] !== prevProps.filters[key]
+      ) {
         this.loadFilter()
       }
     })
@@ -61,7 +64,7 @@ export const ArtworkFilterRefetchContainer = createRefetchContainer(
           major_periods: { type: "[String]" }
           partner_id: { type: "ID" }
           for_sale: { type: "Boolean" }
-          sort: { type: "String", defaultValue: "-decayed_merch" }
+          sort: { type: "String", defaultValue: "-partner_updated_at" }
         ) {
         __id
         grid: filtered_artworks(
