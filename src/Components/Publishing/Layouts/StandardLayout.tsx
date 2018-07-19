@@ -16,6 +16,7 @@ import { Sidebar } from "./Components/Sidebar"
 
 interface ArticleState {
   isTruncated: boolean
+  isInfinite: boolean
 }
 
 export class StandardLayout extends React.Component<
@@ -33,7 +34,8 @@ export class StandardLayout extends React.Component<
     super(props)
 
     this.state = {
-      isTruncated: props.isTruncated || false,
+      isTruncated: props.isTruncated,
+      isInfinite: props.isTruncated,
     }
   }
 
@@ -51,7 +53,7 @@ export class StandardLayout extends React.Component<
       renderTime,
       showTooltips,
     } = this.props
-    const { isTruncated } = this.state
+    const { isTruncated, isInfinite } = this.state
 
     const campaign = omit(display, "panel", "canvas")
     const displayOverflows = display
@@ -79,7 +81,7 @@ export class StandardLayout extends React.Component<
             )
           }
           return (
-            <div>
+            <ArticleContainer isInfinite={isInfinite}>
               <ReadMoreWrapper
                 isTruncated={isTruncated}
                 hideButton={this.removeTruncation}
@@ -103,7 +105,8 @@ export class StandardLayout extends React.Component<
                 </StandardLayoutParent>
 
                 {relatedArticlesForCanvas && (
-                  <RelatedContainer hasBorder={display && true}>
+                  <RelatedContainer>
+                    <Break />
                     <RelatedArticlesCanvas
                       articles={relatedArticlesForCanvas}
                       isMobile={isMobile}
@@ -122,25 +125,34 @@ export class StandardLayout extends React.Component<
                 Footer
               */}
               {display && (
-                <DisplayContainer
-                  hasMargin={!displayOverflows}
-                  hasBorder={isTruncated}
-                >
-                  <DisplayCanvas
-                    unit={display.canvas}
-                    campaign={campaign}
-                    article={article}
-                    renderTime={renderTime}
-                  />
-                </DisplayContainer>
+                <div>
+                  {relatedArticlesForCanvas && <Break />}
+                  <DisplayContainer hasMargin={!displayOverflows}>
+                    <DisplayCanvas
+                      unit={display.canvas}
+                      campaign={campaign}
+                      article={article}
+                      renderTime={renderTime}
+                    />
+                  </DisplayContainer>
+                </div>
               )}
-            </div>
+            </ArticleContainer>
           )
         }}
       </ResponsiveDeprecated>
     )
   }
 }
+
+export const ArticleContainer = styled.div.attrs<{ isInfinite?: boolean }>({})`
+  ${props =>
+    props.isInfinite &&
+    `
+    border-top: 1px solid ${Colors.grayRegular};
+    padding-top: 80px;
+  `};
+`
 
 export const StandardLayoutParent = styled.div`
   margin: 0 40px 100px 40px;
@@ -156,29 +168,19 @@ const StandardLayoutContainer = styled.div`
   justify-content: space-between;
 `
 
-const LineBreak = styled.div`
+const Break = styled.div`
   border-top: 1px solid ${Colors.grayRegular};
   width: 100%;
 `
 
-export const RelatedContainer = styled.div.attrs<{
-  hasBorder?: boolean
-}>({})`
-  ${props =>
-    props.hasBorder &&
-    `
-    border-top: 1px solid rgb(229, 229, 229);
-    border-bottom: 1px solid rgb(229, 229, 229);
-  `} margin: 80px 0 0;
+export const RelatedContainer = styled.div`
+  margin: 80px 0 0;
 `
 
 const DisplayContainer = styled.div.attrs<{
-  hasBorder?: boolean
   hasMargin?: boolean
 }>({})`
   padding: ${props => (props.hasMargin ? "0 40px" : "0")};
-  border-top: ${props =>
-    props.hasBorder ? "1px solid rgb(229, 229, 229)" : "none"};
   ${pMedia.sm`
     padding: 0 20px;
   `};
