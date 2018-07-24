@@ -2,7 +2,6 @@ import { Sans } from "@artsy/palette"
 import React from "react"
 import track from "react-tracking"
 import styled from "styled-components"
-import Events from "../../../Utils/Events"
 import { pMedia } from "../../Helpers"
 import { IconSocialEmail } from "../Icon/IconSocialEmail"
 import { IconSocialFacebook } from "../Icon/IconSocialFacebook"
@@ -20,14 +19,7 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
   isNews?: boolean
 }
 
-@track(
-  props => {
-    return props.trackingData ? props.trackingData : {}
-  },
-  {
-    dispatch: data => Events.postEvent(data),
-  }
-)
+@track()
 export class Share extends React.Component<Props, null> {
   static defaultProps = {
     color: "black",

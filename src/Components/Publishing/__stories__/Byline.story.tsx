@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react"
 import { extend } from "lodash"
 import React from "react"
+import { storiesOfPublishing } from "../../../__stories__/storiesOf.js"
 import { Author } from "../Byline/Author"
 import { Byline } from "../Byline/Byline"
 import { ClassicByline } from "../Byline/ClassicByline"
@@ -18,7 +19,7 @@ import { Authors } from "../Fixtures/Components"
 import { EditableChild } from "../Fixtures/Helpers"
 import { Authors as AuthorInfo } from "../Sections/Authors"
 
-storiesOf("Publishing/Byline/Author", module)
+storiesOfPublishing("Publishing/Byline/Author", module)
   .add("Author", () => {
     return <Author authors={[{ name: "Molly Gottschalk" }]} />
   })
@@ -34,7 +35,7 @@ storiesOf("Publishing/Byline/Author", module)
     )
   })
 
-storiesOf("Publishing/Byline/Date", module)
+storiesOfPublishing("Publishing/Byline/Date", module)
   .add("Date", () => {
     return <Date date="2017-05-19T13:09:18.567Z" />
   })
@@ -76,7 +77,7 @@ storiesOf("Publishing/Byline/Share", module)
       </div>
     )
   })
-storiesOf("Publishing/Byline/Byline", module)
+storiesOfPublishing("Publishing/Byline/Byline", module)
   .add("Byline", () => {
     return (
       <div>
@@ -112,14 +113,17 @@ storiesOf("Publishing/Byline/Byline", module)
       </div>
     )
   })
-storiesOf("Publishing/Byline/ShareDate", module).add("Share Date", () => {
-  return (
-    <div>
-      <ShareDate article={StandardArticle} />
-    </div>
-  )
-})
-storiesOf("Publishing/Byline/ClassicByline", module)
+storiesOfPublishing("Publishing/Byline/ShareDate", module).add(
+  "Share Date",
+  () => {
+    return (
+      <div>
+        <ShareDate article={StandardArticle} />
+      </div>
+    )
+  }
+)
+storiesOfPublishing("Publishing/Byline/ClassicByline", module)
   .add("Byline", () => {
     return (
       <div>
@@ -134,7 +138,7 @@ storiesOf("Publishing/Byline/ClassicByline", module)
       </div>
     )
   })
-storiesOf("Publishing/Byline/NewsByline", module)
+storiesOfPublishing("Publishing/Byline/NewsByline", module)
   .add("Byline", () => {
     return (
       <div>
@@ -169,7 +173,7 @@ storiesOf("Publishing/Byline/NewsByline", module)
     )
   })
 
-storiesOf("Publishing/Byline/AuthorInfo", module)
+storiesOfPublishing("Publishing/Byline/AuthorInfo", module)
   .add("Multiple Authors", () => {
     return (
       <div style={{ margin: "20px" }}>
