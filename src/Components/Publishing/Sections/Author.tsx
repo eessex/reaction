@@ -1,7 +1,7 @@
 import { unica } from "Assets/Fonts"
 import React from "react"
 import Markdown from "react-markdown"
-import styled, { StyledFunction } from "styled-components"
+import styled from "styled-components"
 import { resize } from "../../../Utils/resizer"
 import { pMedia } from "../../Helpers"
 import Icon from "../../Icon"
@@ -46,13 +46,7 @@ export const Author: React.SFC<AuthorProps> = props => {
   )
 }
 
-interface ProfileImageProps extends React.HTMLProps<HTMLDivElement> {
-  image_url?: string
-}
-
-const Div: StyledFunction<ProfileImageProps> = styled.div
-
-const ProfileImage = Div`
+const ProfileImage = styled.div<{ src?: string }>`
   min-width: 60px;
   min-height: 60px;
   border-radius: 50%;
@@ -62,7 +56,11 @@ const ProfileImage = Div`
   ${pMedia.xs`
     min-width: 40px;
     min-height: 40px;
-  `}
+  `};
+
+  @media print {
+    display: none;
+  }
 `
 const AuthorContainer = styled.div`
   display: flex;

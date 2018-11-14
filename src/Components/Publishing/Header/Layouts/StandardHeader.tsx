@@ -43,6 +43,10 @@ const StandardHeaderParent = styled.div`
   ${pMedia.sm`
     margin: 0 ${space(2)}px;
   `};
+
+  @media print {
+    margin: 0;
+  }
 `
 
 const StandardHeaderContainer = styled.div`

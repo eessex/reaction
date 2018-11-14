@@ -148,6 +148,10 @@ export const StandardLayoutParent = styled.div`
   ${pMedia.sm`
     margin: 0 0 100px 0;
   `};
+
+  @media print {
+    margin-bottom: 0;
+  }
 `
 
 const ArticleWrapper = styled.div.attrs<{ isInfiniteScroll?: boolean }>({})`
