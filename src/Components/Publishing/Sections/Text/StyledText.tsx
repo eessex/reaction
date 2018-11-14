@@ -236,6 +236,15 @@ export const StyledText = div`
     .content-start {
       font-size: 55px;
     }
+
+    @media print {
+      p, ul, ol, .paragraph, li {
+        break-inside: page;
+        padding-bottom: .75em;
+        padding-top: .75em;
+        ${garamond("s16")};
+      }
+    }
   `}
 `
 
