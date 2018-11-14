@@ -13,7 +13,7 @@ import { Header } from "../Header/Header"
 import { ReadMoreButton } from "../ReadMore/ReadMoreButton"
 import { ReadMoreWrapper } from "../ReadMore/ReadMoreWrapper"
 import { Sections } from "../Sections/Sections"
-import { CanvasFooter } from "./Components/CanvasFooter"
+import { CanvasFooter, CanvasFooterContainer } from "./Components/CanvasFooter"
 import { Sidebar } from "./Components/Sidebar"
 
 interface ArticleState {
@@ -157,6 +157,12 @@ const ArticleWrapper = styled.div.attrs<{ isInfiniteScroll?: boolean }>({})`
     padding-top: ${space(4)}px;
     border-top: 1px solid ${color("black10")};
   `};
+
+  @media print {
+    ${CanvasFooterContainer} {
+      display: none;
+    }
+  }
 `
 
 const StandardLayoutContainer = styled.div`

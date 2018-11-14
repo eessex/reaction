@@ -22,11 +22,18 @@ export const SectionContainer = styled.div.attrs<{
   ${props => pMedia.xl`
     ${props.articleLayout === "standard" &&
       `
-      width: ${ColumnWidth}
+      width: ${ColumnWidth};
     `}
-  `} ${props => pMedia.md`
+  `};
+
+  ${props => pMedia.md`
     padding: ${getSectionMobilePadding(props.section)};
   `};
+
+  @media print {
+    width: 100%;
+    padding: 0;
+  }
 `
 
 export const getSectionWidth = (

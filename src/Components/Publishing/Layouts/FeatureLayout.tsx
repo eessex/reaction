@@ -8,7 +8,7 @@ import {
 } from "../RelatedArticles/ArticleCards/Block"
 import { Sections } from "../Sections/Sections"
 import { ArticleData, DisplayData, RelatedArticleCanvasData } from "../Typings"
-import { CanvasFooter } from "./Components/CanvasFooter"
+import { CanvasFooter, CanvasFooterContainer } from "./Components/CanvasFooter"
 
 export interface ArticleProps {
   article: ArticleData
@@ -87,5 +87,11 @@ const FeatureLayoutContainer = styled.div`
   }
   ${ArticleCardsContainer} {
     padding-top: 60px;
+  }
+
+  @media print {
+    ${CanvasFooterContainer} {
+      display: none;
+    }
   }
 `
