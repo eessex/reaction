@@ -101,13 +101,21 @@ const StyledImageWrapper = styled.div`
     ${Fullscreen} {
       opacity: 1;
     }
-  `} .BlockImage__container {
+  `};
+
+  .BlockImage__container {
     opacity: 0;
     transition: opacity 1s;
   }
 
   .image-loaded {
     opacity: 1;
+  }
+
+  @media print {
+    ${Fullscreen} {
+      display: none;
+    }
   }
 `
 
