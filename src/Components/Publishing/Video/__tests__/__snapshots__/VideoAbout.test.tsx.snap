@@ -1,51 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Video About matches the snapshot 1`] = `
-.c2 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c3 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c6 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c16 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c17 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
 .c10 {
   font-family: Unica77LLWebMedium,'Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: 500;
@@ -281,6 +236,51 @@ exports[`Video About matches the snapshot 1`] = `
   text-transform: none;
 }
 
+.c2 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c3 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c6 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c16 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c17 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
 .c4 {
   color: black;
   margin-bottom: 15px;
@@ -315,6 +315,72 @@ exports[`Video About matches the snapshot 1`] = `
 
 .c0 .c7 {
   margin-top: 40px;
+}
+
+@media (max-width:48em) {
+  .c8 .c11 {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width:600px) {
+  .c5 p,
+  .c5 ul,
+  .c5 ol,
+  .c5 div[data-block=true] .public-DraftStyleDefault-block {
+    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
+    font-size: 19px;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .c5 li {
+    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
+    font-size: 19px;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .c5 h1 {
+    font-family: Unica77LLWebRegular,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 34px;
+    line-height: 1.1em;
+  }
+
+  .c5 h2 {
+    font-family: Unica77LLWebRegular,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 32px;
+    line-height: 1.1em;
+  }
+
+  .c5 h3 {
+    font-family: Unica77LLWebRegular,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.1em;
+    line-height: 1.5em;
+  }
+
+  .c5 h3 strong {
+    font-family: Unica77LLWebMedium,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.1em;
+  }
+
+  .c5 blockquote {
+    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
+    font-size: 34px;
+    line-height: 1.1em;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+
+  .c5 .content-start {
+    font-size: 55px;
+  }
 }
 
 @media only screen and (min-width:0em) {
@@ -396,72 +462,6 @@ exports[`Video About matches the snapshot 1`] = `
 @media only screen and (min-width:48em) {
   .c17 {
     display: none;
-  }
-}
-
-@media (max-width:48em) {
-  .c8 .c11 {
-    margin-top: 0px;
-  }
-}
-
-@media (max-width:600px) {
-  .c5 p,
-  .c5 ul,
-  .c5 ol,
-  .c5 div[data-block=true] .public-DraftStyleDefault-block {
-    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
-    font-size: 19px;
-    line-height: 1.5em;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .c5 li {
-    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
-    font-size: 19px;
-    line-height: 1.5em;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .c5 h1 {
-    font-family: Unica77LLWebRegular,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 34px;
-    line-height: 1.1em;
-  }
-
-  .c5 h2 {
-    font-family: Unica77LLWebRegular,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 32px;
-    line-height: 1.1em;
-  }
-
-  .c5 h3 {
-    font-family: Unica77LLWebRegular,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-    line-height: 1.1em;
-    line-height: 1.5em;
-  }
-
-  .c5 h3 strong {
-    font-family: Unica77LLWebMedium,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-    line-height: 1.1em;
-  }
-
-  .c5 blockquote {
-    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
-    font-size: 34px;
-    line-height: 1.1em;
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-  }
-
-  .c5 .content-start {
-    font-size: 55px;
   }
 }
 
@@ -790,51 +790,6 @@ exports[`Video About matches the snapshot 1`] = `
 `;
 
 exports[`Video About matches the snapshot with editable props 1`] = `
-.c2 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c3 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c6 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c16 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.c17 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
 .c10 {
   font-family: Unica77LLWebMedium,'Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: 500;
@@ -1070,6 +1025,51 @@ exports[`Video About matches the snapshot with editable props 1`] = `
   text-transform: none;
 }
 
+.c2 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c3 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c6 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c16 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.c17 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
 .c4 {
   color: black;
   margin-bottom: 15px;
@@ -1104,6 +1104,72 @@ exports[`Video About matches the snapshot with editable props 1`] = `
 
 .c0 .c7 {
   margin-top: 40px;
+}
+
+@media (max-width:48em) {
+  .c8 .c11 {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width:600px) {
+  .c5 p,
+  .c5 ul,
+  .c5 ol,
+  .c5 div[data-block=true] .public-DraftStyleDefault-block {
+    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
+    font-size: 19px;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .c5 li {
+    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
+    font-size: 19px;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .c5 h1 {
+    font-family: Unica77LLWebRegular,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 34px;
+    line-height: 1.1em;
+  }
+
+  .c5 h2 {
+    font-family: Unica77LLWebRegular,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 32px;
+    line-height: 1.1em;
+  }
+
+  .c5 h3 {
+    font-family: Unica77LLWebRegular,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.1em;
+    line-height: 1.5em;
+  }
+
+  .c5 h3 strong {
+    font-family: Unica77LLWebMedium,Arial,serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.1em;
+  }
+
+  .c5 blockquote {
+    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
+    font-size: 34px;
+    line-height: 1.1em;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+
+  .c5 .content-start {
+    font-size: 55px;
+  }
 }
 
 @media only screen and (min-width:0em) {
@@ -1185,72 +1251,6 @@ exports[`Video About matches the snapshot with editable props 1`] = `
 @media only screen and (min-width:48em) {
   .c17 {
     display: none;
-  }
-}
-
-@media (max-width:48em) {
-  .c8 .c11 {
-    margin-top: 0px;
-  }
-}
-
-@media (max-width:600px) {
-  .c5 p,
-  .c5 ul,
-  .c5 ol,
-  .c5 div[data-block=true] .public-DraftStyleDefault-block {
-    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
-    font-size: 19px;
-    line-height: 1.5em;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .c5 li {
-    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
-    font-size: 19px;
-    line-height: 1.5em;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .c5 h1 {
-    font-family: Unica77LLWebRegular,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 34px;
-    line-height: 1.1em;
-  }
-
-  .c5 h2 {
-    font-family: Unica77LLWebRegular,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 32px;
-    line-height: 1.1em;
-  }
-
-  .c5 h3 {
-    font-family: Unica77LLWebRegular,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-    line-height: 1.1em;
-    line-height: 1.5em;
-  }
-
-  .c5 h3 strong {
-    font-family: Unica77LLWebMedium,Arial,serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-    line-height: 1.1em;
-  }
-
-  .c5 blockquote {
-    font-family: 'Adobe Garamond W08','adobe-garamond-pro','AGaramondPro-Regular','Times New Roman',Times,serif;
-    font-size: 34px;
-    line-height: 1.1em;
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-  }
-
-  .c5 .content-start {
-    font-size: 55px;
   }
 }
 

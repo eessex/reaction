@@ -1,10 +1,10 @@
 import { unica } from "Assets/Fonts"
+import { pMedia } from "Components/Helpers"
+import { ShareDate } from "Components/Publishing/Byline/ShareDate"
+import { Text } from "Components/Publishing/Sections/Text/Text"
 import React, { Component } from "react"
 import { Col } from "react-styled-flexboxgrid"
 import styled from "styled-components"
-import { pMedia } from "../../Helpers"
-import { ShareDate } from "../Byline/ShareDate"
-import { Text } from "../Sections/Text"
 
 export interface VideoAboutProps {
   article: any

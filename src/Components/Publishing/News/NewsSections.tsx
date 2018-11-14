@@ -1,12 +1,12 @@
 import { pMedia } from "Components/Helpers"
+import { NewsByline } from "Components/Publishing/Byline/NewsByline"
+import { ImageCollection } from "Components/Publishing/Sections/ImageCollection"
+import { SocialEmbed } from "Components/Publishing/Sections/SocialEmbed"
+import { Text } from "Components/Publishing/Sections/Text/Text"
+import { ArticleData, SectionData } from "Components/Publishing/Typings"
 import { Truncator } from "Components/Truncator"
 import React, { Component } from "react"
 import styled from "styled-components"
-import { NewsByline } from "../Byline/NewsByline"
-import { ImageCollection } from "../Sections/ImageCollection"
-import { SocialEmbed } from "../Sections/SocialEmbed"
-import { Text } from "../Sections/Text"
-import { ArticleData, SectionData } from "../Typings"
 
 interface Props {
   article: ArticleData

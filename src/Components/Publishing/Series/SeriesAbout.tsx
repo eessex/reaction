@@ -1,12 +1,15 @@
 import { unica } from "Assets/Fonts"
+import { media } from "Components/Helpers"
+import {
+  PartnerBlock,
+  PartnerBlockContainer,
+} from "Components/Publishing/Partner/PartnerBlock"
+import { Text } from "Components/Publishing/Sections/Text/Text"
+import { ArticleData } from "Components/Publishing/Typings"
 import React, { Component } from "react"
 import { Col, Row } from "react-styled-flexboxgrid"
 import track, { TrackingProp } from "react-tracking"
 import styled from "styled-components"
-import { media } from "../../Helpers"
-import { PartnerBlock, PartnerBlockContainer } from "../Partner/PartnerBlock"
-import { Text } from "../Sections/Text"
-import { ArticleData } from "../Typings"
 
 interface Props {
   article?: ArticleData

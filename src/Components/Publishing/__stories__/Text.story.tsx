@@ -1,13 +1,13 @@
 import { storiesOf } from "@storybook/react"
-import React from "react"
 import {
   NewsArticle,
   TextClassicArticle,
   TextFeatureArticle,
   TextStandardArticle,
-} from "../Fixtures/Articles"
-import { TextFromArticle } from "../Fixtures/Helpers"
-import { Text } from "../Sections/Text"
+} from "Components/Publishing/Fixtures/Articles"
+import { TextFromArticle } from "Components/Publishing/Fixtures/Helpers"
+import { Text } from "Components/Publishing/Sections/Text/Text"
+import React from "react"
 
 storiesOf("Publishing/Sections/Text", module)
   .add("Classic", () => {

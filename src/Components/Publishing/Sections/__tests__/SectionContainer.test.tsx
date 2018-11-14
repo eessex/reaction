@@ -1,13 +1,13 @@
-import { SectionData, SectionLayout } from "Components/Publishing/Typings"
-import "jest-styled-components"
-import React from "react"
-import renderer from "react-test-renderer"
 import {
   getSectionMobilePadding,
   getSectionWidth,
   SectionContainer,
-} from "../SectionContainer"
-import { Text } from "../Text"
+} from "Components/Publishing/Sections/SectionContainer"
+import { Text } from "Components/Publishing/Sections/Text/Text"
+import { SectionData, SectionLayout } from "Components/Publishing/Typings"
+import "jest-styled-components"
+import React from "react"
+import renderer from "react-test-renderer"
 
 describe("SectionContainer", () => {
   let section: SectionData

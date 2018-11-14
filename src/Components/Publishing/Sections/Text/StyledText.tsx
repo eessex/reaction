@@ -1,10 +1,10 @@
 import Colors from "Assets/Colors"
 import { avantgarde, garamond, unica } from "Assets/Fonts"
+import { pMedia } from "Components/Helpers"
+import { PrimaryLink } from "Components/Publishing/ToolTip/LinkWithTooltip"
+import { ArticleLayout } from "Components/Publishing/Typings"
 import React from "react"
 import styled, { StyledFunction } from "styled-components"
-import { pMedia } from "../../Helpers"
-import { PrimaryLink } from "../ToolTip/LinkWithTooltip"
-import { ArticleLayout } from "../Typings"
 
 interface StyledTextProps {
   color?: string

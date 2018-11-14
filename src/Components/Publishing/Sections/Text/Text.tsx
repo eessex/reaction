@@ -1,7 +1,7 @@
+import { ArticleLayout } from "Components/Publishing/Typings"
 import { startsWith } from "lodash"
 import React, { Component } from "react"
 import ReactHtmlParser, { convertNodeToElement } from "react-html-parser"
-import { ArticleLayout } from "../Typings"
 import { StyledText } from "./StyledText"
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
@@ -74,7 +74,7 @@ export class Text extends Component<Props, State> {
   transformNode = (node, index) => {
     // Dont include relay components unless necessary
     // To avoid 'regeneratorRuntime' error
-    const LinkWithTooltip = require("../ToolTip/LinkWithTooltip").default
+    const LinkWithTooltip = require("../../ToolTip/LinkWithTooltip").default
 
     if (node.name === "p") {
       node.name = "div"
