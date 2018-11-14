@@ -70,6 +70,10 @@ export class Artwork extends React.PureComponent<ArtworkProps> {
 
 const ArtworkImageLink = styled.a`
   text-decoration: none;
+
+  @media print {
+    height: min-content;
+  }
 `
 
 const ArtworkContainer = styled.div`
