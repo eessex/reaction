@@ -57,16 +57,11 @@ export class ImageWrapper extends React.PureComponent<Props, any> {
 
   render() {
     const { editing, layout, linked, index, ...imageProps }: any = this.props
-    let className = "BlockImage__container"
-
-    if (this.state.isLoaded || editing) {
-      className = className + " image-loaded"
-    }
 
     return (
       <StyledImageWrapper>
         <BlockImage
-          className={className}
+          isLoaded={this.state.isLoaded || editing}
           ref={ref => (this.image = ref)}
           {...imageProps}
         />
@@ -103,15 +98,6 @@ const StyledImageWrapper = styled.div`
     }
   `};
 
-  .BlockImage__container {
-    opacity: 0;
-    transition: opacity 1s;
-  }
-
-  .image-loaded {
-    opacity: 1;
-  }
-
   @media print {
     ${Fullscreen} {
       display: none;
@@ -119,6 +105,14 @@ const StyledImageWrapper = styled.div`
   }
 `
 
-const BlockImage = styled.img`
+const BlockImage = styled.img<{ isLoaded?: boolean }>`
   display: block;
+  opacity: 0;
+  transition: opacity 1s;
+
+  ${props =>
+    props.isLoaded &&
+    `
+    opacity: 1;
+  `};
 `

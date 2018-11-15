@@ -243,13 +243,13 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
 
     return (
       <ErrorBoundary>
-        <div>
+        <>
           {isFullscreenCaption
             ? this.renderFullscreenCaption()
             : layout === "classic"
               ? this.renderClassicCaption()
               : this.renderEditorialCaption()}
-        </div>
+        </>
       </ErrorBoundary>
     )
   }

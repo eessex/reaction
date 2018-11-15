@@ -16,8 +16,8 @@ export const SectionContainer = styled.div.attrs<{
   box-sizing: border-box;
   margin: auto;
   margin-bottom: 40px;
-  width: ${props => getSectionWidth(props.section, props.articleLayout)};
-  max-width: 100%;
+  max-width: ${props => getSectionWidth(props.section, props.articleLayout)};
+  position: relative;
 
   ${props => pMedia.xl`
     ${props.articleLayout === "standard" &&
