@@ -1,12 +1,12 @@
-import { unica } from "Assets/Fonts"
+import { Box, Flex, Sans } from "@artsy/palette"
 import React, { Component } from "react"
-import { Col, Row } from "react-styled-flexboxgrid"
 import track, { TrackingProp } from "react-tracking"
 import styled from "styled-components"
-import { media } from "../../Helpers"
-import { PartnerBlock, PartnerBlockContainer } from "../Partner/PartnerBlock"
-import { Text } from "../Sections/Text"
-import { ArticleData } from "../Typings"
+
+import { PartnerBlock } from "Components/Publishing/Partner/PartnerBlock"
+import { Text } from "Components/Publishing/Sections/Text"
+import { ArticleData } from "Components/Publishing/Typings"
+import { Media } from "Utils/Responsive"
 
 interface Props {
   article?: ArticleData
@@ -46,102 +46,76 @@ export class SeriesAbout extends Component<Props, null> {
 
     const sponsorLogo =
       sponsor &&
-      (color === "black"
-        ? sponsor.partner_dark_logo
-        : sponsor.partner_light_logo)
+      (color === "white"
+        ? sponsor.partner_light_logo
+        : sponsor.partner_dark_logo)
 
     return (
-      <SeriesAboutContainer color={color}>
-        <StyledCol xs={12} sm={4}>
-          <Title>
+      <SeriesAboutContainer
+        color={color || "black"}
+        maxWidth="1200px"
+        mx="auto"
+        width="100%"
+        flexDirection={["column", "row", "row"]}
+      >
+        <Flex
+          width={[1, 1 / 3]}
+          justifyContent="space-between"
+          flexDirection="column"
+        >
+          <Sans size="8" mb={["20px", 0]}>
             {editSubTitle
               ? editSubTitle
               : (series && series.sub_title) || "About the Series"}
-          </Title>
-          {sponsor && (
-            <PartnerBlock
-              logo={sponsorLogo}
-              url={sponsor.partner_logo_link}
-              trackingData={{
-                type: "external link",
-                destination_path: sponsor.partner_logo_link,
-              }}
-            />
-          )}
-        </StyledCol>
-        <StyledCol xs={12} sm={8}>
+          </Sans>
+          <Media greaterThanOrEqual="sm">
+            {sponsor && (
+              <Box mb={1}>
+                <PartnerBlock
+                  logo={sponsorLogo}
+                  url={sponsor.partner_logo_link}
+                  trackingData={{
+                    type: "external link",
+                    destination_path: sponsor.partner_logo_link,
+                  }}
+                />
+              </Box>
+            )}
+          </Media>
+        </Flex>
+
+        <Flex width={[1, 2 / 3]} flexDirection="column">
           {editDescription ? (
-            <Text layout="standard" color={color}>
+            <Text layout="standard" color={color || "black"}>
               {editDescription}
             </Text>
           ) : (
             <div className="SeriesAbout__description">
               <Text
                 layout="standard"
-                color={color}
+                color={color || "black"}
                 html={series && series.description}
               />
             </div>
           )}
-          {sponsor && (
-            <PartnerBlock
-              logo={sponsorLogo}
-              url={sponsor.partner_logo_link}
-              trackingData={{
-                type: "external link",
-                destination_path: sponsor.partner_logo_link,
-              }}
-            />
-          )}
-        </StyledCol>
+          <Media lessThan="sm">
+            {sponsor && (
+              <Box mt={60}>
+                <PartnerBlock
+                  logo={sponsorLogo}
+                  url={sponsor.partner_logo_link}
+                  trackingData={{
+                    type: "external link",
+                    destination_path: sponsor.partner_logo_link,
+                  }}
+                />
+              </Box>
+            )}
+          </Media>
+        </Flex>
       </SeriesAboutContainer>
     )
   }
 }
 
-SeriesAbout.defaultProps = {
-  color: "black",
-}
-
-export const SeriesAboutContainer = styled(Row)`
-  color: ${(props: Props) => props.color};
-  max-width: 1200px;
-  width: 100%;
-`
-
-const StyledCol = styled(Col)`
-  ${PartnerBlockContainer} {
-    display: none;
-  }
-
-  &:first-of-type {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-
-    ${PartnerBlockContainer} {
-      display: block;
-      margin-bottom: 10px;
-    }
-  }
-
-  ${props => media.sm`
-    &:first-of-type {
-      ${PartnerBlockContainer} {
-        display: none;
-      }
-    }
-
-    ${PartnerBlockContainer} {
-      margin-top: 60px;
-      display: block;
-    }
-  `};
-`
-
-const Title = styled.div`
-  ${unica("s32")};
-  ${props => media.sm`
-    margin-bottom: 20px;
-  `};
-`
+export const SeriesAboutContainer = styled(Flex)``

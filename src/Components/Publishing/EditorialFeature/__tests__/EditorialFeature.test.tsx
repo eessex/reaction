@@ -1,8 +1,6 @@
+import { ArticleProps } from "Components/Publishing/Article"
 import { FeatureArticle } from "Components/Publishing/Fixtures/Articles"
-import {
-  ArticleProps,
-  FeatureLayout,
-} from "Components/Publishing/Layouts/FeatureLayout"
+import { FeatureLayout } from "Components/Publishing/Layouts/FeatureLayout"
 import { mount } from "enzyme"
 import React from "react"
 import { Eoy2018Artists } from "../Components/Eoy2018Artists"

@@ -1,4 +1,5 @@
-import Colors from "Assets/Colors"
+import { color } from "@artsy/palette"
+import FadeTransition from "Components/Animation/FadeTransition"
 import { defer } from "lodash"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
@@ -6,10 +7,10 @@ import { findDOMNode } from "react-dom"
 import track, { TrackingProp } from "react-tracking"
 import styled from "styled-components"
 import { parse as parseURL } from "url"
-import FadeTransition from "../../Animation/FadeTransition"
 import { ToolTip } from "./ToolTip"
 
 interface Props {
+  color?: string
   url: string
   tracking?: TrackingProp
 }
@@ -204,6 +205,7 @@ export class LinkWithTooltip extends Component<Props, State> {
           target="_blank"
           show={showWithFade}
           onClick={() => this.trackClick(toolTipData)}
+          color={this.props.color}
         >
           {this.props.children}
         </PrimaryLink>
@@ -242,13 +244,13 @@ export class LinkWithTooltip extends Component<Props, State> {
   }
 }
 
-export const PrimaryLink = styled.a.attrs<{ show: boolean }>({})`
+export const PrimaryLink = styled.a<{ color?: string; show: boolean }>`
   z-index: auto;
-  color: black;
+  color: ${props => (props.color ? props.color : color("black100"))};
   transition: color 0.25s;
   background-image: linear-gradient(
     to right,
-    ${Colors.graySemibold} 50%,
+    ${props => (props.color ? props.color : color("black60"))} 50%,
     transparent 50%
   ) !important;
   background-size: 3px 1.75px !important;
@@ -256,10 +258,11 @@ export const PrimaryLink = styled.a.attrs<{ show: boolean }>({})`
   ${props =>
     props.show &&
     `
-    color: ${Colors.grayDark} !important;
+    color: ${props.color ? props.color : color("black60")} !important;
+    opacity: ${props.color ? 0.6 : 1};
     background-image: linear-gradient(
       to right,
-      ${Colors.grayDark} 50%,
+      ${props.color ? props.color : color("black60")} 50%,
       transparent 50%
     ) !important;
   `};

@@ -9,6 +9,7 @@ import { ImageSetLabel } from "./ImageSetLabel"
 type Layout = "mini" | "full"
 
 export interface ImageSetPreviewProps {
+  color?: string
   section: {
     type: string
     images: Array<{
@@ -64,7 +65,11 @@ export class ImageSetPreview extends React.PureComponent<
     } else {
       return (
         <ImageSetContainer>
-          <MiniWrapper alignItems="center" onClick={this.onClick}>
+          <MiniWrapper
+            alignItems="center"
+            onClick={this.onClick}
+            color={this.props.color}
+          >
             <Img src={src} alt={alt} />
             <ImageSetLabel {...this.props} />
           </MiniWrapper>
@@ -90,6 +95,7 @@ export const FullLabel = styled.div`
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  color: black;
 
   &:hover {
     background: rgba(0, 0, 0, 0.6);
@@ -111,7 +117,7 @@ export const ImgContainer = styled.div``
 const MiniWrapper = styled(Flex)`
   height: 100px;
   padding: 10px 0 10px 10px;
-  border: 1px solid ${color("black10")};
+  border: 1px solid ${props => (props.color ? props.color : color("black10"))};
   cursor: pointer;
 
   ${Img} {

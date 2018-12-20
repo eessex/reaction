@@ -17,6 +17,7 @@ const QUERYSTRING =
 export const VIDEO_RATIO = 0.5625
 
 interface VideoProps {
+  color?: string
   section: {
     url: string
     caption?: string
@@ -121,7 +122,11 @@ class VideoComponent extends React.Component<VideoProps, VideoState> {
         />
 
         {showCaption && (
-          <Caption caption={caption} layout={this.props.layout}>
+          <Caption
+            caption={caption}
+            layout={this.props.layout}
+            color={this.props.color}
+          >
             {this.props.children}
           </Caption>
         )}

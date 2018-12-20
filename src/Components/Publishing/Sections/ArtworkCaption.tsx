@@ -1,9 +1,9 @@
+import { Box, color, Flex } from "@artsy/palette"
 import { garamond, unica } from "Assets/Fonts"
 import { Truncator } from "Components/Truncator"
 import _ from "lodash"
 import React from "react"
 import styled from "styled-components"
-import Colors from "../../../Assets/Colors"
 import { ErrorBoundary } from "../../ErrorBoundary"
 import { pMedia } from "../../Helpers"
 import TextLink from "../../TextLink"
@@ -11,15 +11,11 @@ import { ArticleLayout, SectionLayout } from "../Typings"
 
 interface ArtworkCaptionProps extends React.HTMLProps<HTMLDivElement> {
   artwork: any
+  color?: string
   layout?: ArticleLayout
   sectionLayout?: SectionLayout
   linked?: boolean
   isFullscreenCaption?: boolean
-}
-
-interface StyledArtworkCaptionProps extends React.HTMLProps<HTMLDivElement> {
-  layout?: ArticleLayout
-  sectionLayout?: SectionLayout
 }
 
 export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
@@ -78,7 +74,7 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
     }
   }
 
-  renderArtistName(artist, key: string) {
+  renderArtistName = (artist, key: string) => {
     const { linked } = this.props
     const { name, slug } = artist
     const createTextLink = linked && slug
@@ -88,7 +84,7 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
 
       return (
         <ArtistName key={`renderArtistName-${key}`}>
-          <TextLink href={href} color="#999">
+          <TextLink href={href} color={this.props.color || color("black60")}>
             {name}
           </TextLink>
         </ArtistName>
@@ -102,13 +98,13 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
     }
   }
 
-  renderTitleDate() {
+  renderTitleDate = () => {
     const children = [this.renderTitle(), this.renderDate()]
     const titleDate = this.joinParts(children, "renderTitleDate")
     return titleDate
   }
 
-  renderTitle() {
+  renderTitle = () => {
     const {
       artwork: { slug, title },
       linked,
@@ -120,7 +116,7 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
 
         return (
           <span key="renderTitle" className="title">
-            <TextLink href={href} color="#999">
+            <TextLink href={href} color={this.props.color || color("black60")}>
               {title}
             </TextLink>
           </span>
@@ -149,7 +145,7 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
     }
   }
 
-  renderPartner() {
+  renderPartner = () => {
     const {
       artwork: {
         partner: { name, slug },
@@ -162,7 +158,11 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
 
       if (createTextLink) {
         return (
-          <TextLink key="renderPartner" href={`/${slug}`} color="#999">
+          <TextLink
+            key="renderPartner"
+            href={`/${slug}`}
+            color={this.props.color || color("black60")}
+          >
             {name}
           </TextLink>
         )
@@ -209,7 +209,11 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
 
   renderClassicCaption = () => {
     return (
-      <StyledClassicCaption className="display-artwork__caption">
+      <StyledClassicCaption
+        className="display-artwork__caption"
+        color={this.props.color || color("black60")}
+        mt={10}
+      >
         <Truncator>
           <ArtistNames>{this.renderArtists()}</ArtistNames>
           {this.renderTitleDate()}
@@ -221,13 +225,14 @@ export class ArtworkCaption extends React.Component<ArtworkCaptionProps, null> {
   }
 
   renderEditorialCaption = () => {
-    const { layout, sectionLayout } = this.props
+    const { sectionLayout } = this.props
 
     return (
       <StyledArtworkCaption
-        layout={layout}
-        sectionLayout={sectionLayout}
         className="display-artwork__caption"
+        color={this.props.color || color("black60")}
+        mt={10}
+        py={sectionLayout === "fillwidth" ? 10 : 0}
       >
         <ArtistNames>{this.renderArtists()}</ArtistNames>
         <div>
@@ -263,16 +268,11 @@ const ArtistName = styled.span`
   white-space: nowrap;
 `
 
-const StyledArtworkCaption = styled.div`
-  padding: ${(props: StyledArtworkCaptionProps) =>
-    props.sectionLayout === "fillwidth" ? "0 10px;" : "0;"};
-  margin-top: 10px;
-  display: flex;
-  color: ${Colors.grayDark};
+const StyledArtworkCaption = styled(Flex)`
   ${unica("s14")};
 
   a {
-    color: ${Colors.grayDark};
+    color: ${props => props.color};
     ${unica("s14")};
   }
 
@@ -286,11 +286,13 @@ const StyledArtworkCaption = styled.div`
   `};
 `
 
-const StyledClassicCaption = styled.div`
-  margin-top: 10px;
+const StyledClassicCaption = styled(Box)`
   display: block;
-  color: ${Colors.grayDark};
   ${garamond("s15")};
+
+  a {
+    color: ${props => props.color};
+  }
 
   ${ArtistNames} {
     margin-right: 0;
@@ -306,14 +308,13 @@ const StyledClassicCaption = styled.div`
   }
 `
 
-const StyledFullscreenCaption = styled.div`
+const StyledFullscreenCaption = styled(Flex)`
   ${unica("s16", "medium")};
-  display: flex;
-  color: black;
+  color: ${color("black100")};
 
   /* stylelint-disable-next-line */
   a {
-    color: black;
+    color: ${color("black100")};
     ${unica("s16", "medium")};
   }
 

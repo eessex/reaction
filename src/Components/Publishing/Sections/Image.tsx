@@ -6,6 +6,7 @@ import { Caption } from "./Caption"
 import { ImageWrapper } from "./ImageWrapper"
 
 interface ImageProps extends React.HTMLProps<HTMLDivElement> {
+  color?: string
   editCaption?: any
   editing?: boolean
   image?: any
@@ -18,6 +19,7 @@ interface ImageProps extends React.HTMLProps<HTMLDivElement> {
 
 export const Image: React.SFC<ImageProps> = props => {
   const {
+    color,
     children,
     editing,
     editCaption,
@@ -45,7 +47,12 @@ export const Image: React.SFC<ImageProps> = props => {
         editing={editCaption || editing}
       />
 
-      <Caption caption={caption} layout={layout} sectionLayout={sectionLayout}>
+      <Caption
+        caption={caption}
+        layout={layout}
+        sectionLayout={sectionLayout}
+        color={color}
+      >
         {editCaption && editCaption()}
       </Caption>
       {children}

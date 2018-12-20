@@ -1,14 +1,10 @@
 import { Box } from "@artsy/palette"
 import { unica } from "Assets/Fonts"
-import { media } from "Components/Helpers"
 import {
   Vertical,
   VerticalOrSeriesTitle,
 } from "Components/Publishing/Sections/VerticalOrSeriesTitle"
-import {
-  SeriesAbout,
-  SeriesAboutContainer,
-} from "Components/Publishing/Series/SeriesAbout"
+import { SeriesAbout } from "Components/Publishing/Series/SeriesAbout"
 import { ArticleData } from "Components/Publishing/Typings"
 import React from "react"
 import styled from "styled-components"
@@ -41,7 +37,7 @@ export const ArticleCardsBlock: React.SFC<Props> = props => {
         </Box>
       )}
       {seriesArticle && (
-        <Box maxWidth={1200} mx="auto">
+        <Box maxWidth={1200} mx="auto" pb={100} pt={[40, 40, 60]}>
           <SeriesAbout article={seriesArticle} color={color} />
         </Box>
       )}
@@ -49,12 +45,10 @@ export const ArticleCardsBlock: React.SFC<Props> = props => {
   )
 }
 
-ArticleCardsBlock.defaultProps = {
-  color: "black",
-}
-
-export const ArticleCardsContainer = styled.div`
-  color: ${props => props.color};
+export const ArticleCardsContainer = styled(Box)`
+  a {
+    color: ${props => props.color || "black"};
+  }
 
   ${Vertical} {
     ${unica("s32")};
@@ -63,19 +57,6 @@ export const ArticleCardsContainer = styled.div`
 
     a {
       border-bottom: 2px solid;
-      ${media.sm`
-        display: block;
-      `};
     }
   }
-
-  ${SeriesAboutContainer} {
-    margin: 60px auto 100px auto;
-  }
-
-  ${media.sm`
-    ${SeriesAboutContainer} {
-      margin: 40px auto 100px auto;
-    }
-  `};
 `

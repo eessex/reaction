@@ -1,5 +1,5 @@
-import { Sans } from "@artsy/palette"
-import { garamond, unica } from "Assets/Fonts"
+import { Flex, Sans, Serif } from "@artsy/palette"
+import { unica } from "Assets/Fonts"
 import { pMedia } from "Components/Helpers"
 import { Byline } from "Components/Publishing/Byline/Byline"
 import { Date } from "Components/Publishing/Byline/Date"
@@ -139,19 +139,26 @@ export class ArticleCard extends Component<Props, null> {
         published={!isUnpublishedMedia}
         onClick={this.openLink}
       >
-        <TextContainer>
+        <Flex
+          width={["100%", "100%", "100%", "50%"]}
+          mb={[0, 0, 0, "5px"]}
+          flexDirection="column"
+          justifyContent="space-between"
+        >
           <div>
             {series && (
-              <SeriesTitle size="3t" weight="medium">
+              <Sans size="3t" weight="medium" mb={1}>
                 {series.title}
-              </SeriesTitle>
+              </Sans>
             )}
             <Title>{title}</Title>
 
-            <Description>{description}</Description>
+            <Serif size={["4", "4", "4", "5"]} mb={[2, 2, 2, 0]}>
+              {description}
+            </Serif>
           </div>
           {this.renderDate()}
-        </TextContainer>
+        </Flex>
 
         <ImageContainer>
           {editImage ? (
@@ -193,17 +200,17 @@ const ImageContainer = styled.div`
   `};
 `
 
-export const ArticleCardContainer = styled.a`
+export const ArticleCardContainer = styled.a<LinkProps>`
   border: 1px solid;
   border-radius: 2px;
-  color: ${(props: LinkProps) => props.color};
-  cursor: ${(props: LinkProps) => (props.published ? "pointer" : "default")};
+  color: ${props => props.color};
+  cursor: ${props => (props.published ? "pointer" : "default")};
   text-decoration: none;
   padding: 30px;
   display: flex;
 
   ${Image} {
-    opacity: ${(props: LinkProps) => (props.published ? "1" : "0.7")};
+    opacity: ${props => (props.published ? "1" : "0.7")};
   }
 
   &:hover {
@@ -222,35 +229,11 @@ export const ArticleCardContainer = styled.a`
   `};
 `
 
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-  margin-bottom: 5px;
-  ${pMedia.md`
-    width: 100%;
-    margin-bottom: 0;
-  `};
-`
-
 const Title = styled.div`
   ${unica("s45")};
   margin-bottom: 30px;
   ${pMedia.md`
     ${unica("s32")}
-  `};
-`
-
-const SeriesTitle = styled(Sans)`
-  margin-bottom: 10px;
-`
-
-const Description = styled.div`
-  ${garamond("s23")};
-  ${pMedia.md`
-    ${garamond("s19")}
-    margin-bottom: 20px;
   `};
 `
 

@@ -1,17 +1,20 @@
+import { color } from "@artsy/palette"
 import { garamond, unica } from "Assets/Fonts"
 import React from "react"
-import styled, { StyledFunction } from "styled-components"
+import styled from "styled-components"
 import { pMedia } from "../../Helpers"
 import { ArticleLayout, SectionLayout } from "../Typings"
 
 interface CaptionProps {
   caption: string
+  color?: string
   index?: any
   layout?: ArticleLayout
   sectionLayout?: SectionLayout
 }
 
 interface FigcaptionProps {
+  color?: string
   layout: ArticleLayout
   sectionLayout?: SectionLayout
 }
@@ -25,7 +28,11 @@ export const Caption: React.SFC<CaptionProps> = props => {
 
   return (
     <CaptionContainer>
-      <Figcaption layout={layout} sectionLayout={sectionLayout}>
+      <Figcaption
+        layout={layout}
+        sectionLayout={sectionLayout}
+        color={props.color}
+      >
         {child}
       </Figcaption>
     </CaptionContainer>
@@ -40,11 +47,9 @@ export const CaptionContainer = styled.div`
     padding: 0px 10px;
   `};
 `
-const div: StyledFunction<FigcaptionProps & React.HTMLProps<HTMLDivElement>> =
-  styled.div
 
 // includes draft placeholder class for editable text in Writer
-const Figcaption = div`
+const Figcaption = styled.div<FigcaptionProps>`
   padding: ${props => (props.sectionLayout === "fillwidth" ? "0 10px;" : "0;")}
   width: 100%;
   word-break: break-word;
@@ -53,14 +58,14 @@ const Figcaption = div`
   .public-DraftEditorPlaceholder-root,
   .public-DraftStyleDefault-block {
     ${props => (props.layout === "classic" ? garamond("s15") : unica("s14"))}
-    color: ${props => (props.layout === "classic" ? "#666" : "#999")};
+    color: ${props => (props.color ? props.color : color("black60"))};
     margin: 0;
   }
 
   & > a, a {
-    color: #999;
+    color: ${props => (props.color ? props.color : color("black60"))};
     &:hover {
-      color: black;
+      color: ${props => (props.color ? props.color : color("black100"))};
     }
   }
 

@@ -1,3 +1,4 @@
+import { color } from "@artsy/palette"
 import Colors from "Assets/Colors"
 import { avantgarde, garamond, unica } from "Assets/Fonts"
 import React from "react"
@@ -37,6 +38,8 @@ export const StyledText = div`
   position: relative;
   padding-bottom: ${props => (props.postscript ? "2em" : "")};
   width: 100%;
+  color: ${props => props.color};
+
   a {
     color: ${props => props.color};
     text-decoration: none;
@@ -104,7 +107,7 @@ export const StyledText = div`
       content: "";
       width: 8px;
       height: 8px;
-      background: black;
+      background: ${props => (props.color ? props.color : color("black100"))};
       border-radius: 50%;
       position: absolute;
       top: 69px;
@@ -185,7 +188,7 @@ export const StyledText = div`
     content: "";
     width: 8px;
     height: 8px;
-    background: black;
+    background: ${props => (props.color ? props.color : color("black100"))};
     border-radius: 50%;
     margin-left: 12px;
     margin-bottom: 1px;

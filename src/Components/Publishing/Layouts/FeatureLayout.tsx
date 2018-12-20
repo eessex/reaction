@@ -1,3 +1,5 @@
+import { Box, Flex } from "@artsy/palette"
+import { ArticleProps } from "Components/Publishing/Article"
 import React from "react"
 import styled from "styled-components"
 import { Header } from "../Header/Header"
@@ -7,24 +9,14 @@ import {
   ArticleCardsContainer,
 } from "../RelatedArticles/ArticleCards/Block"
 import { Sections } from "../Sections/Sections"
-import { ArticleData, DisplayData, RelatedArticleCanvasData } from "../Typings"
 import { CanvasFooter } from "./Components/CanvasFooter"
-
-export interface ArticleProps {
-  article: ArticleData
-  customEditorial?: string
-  display?: DisplayData
-  isMobile?: boolean
-  isSuper?: boolean
-  relatedArticlesForCanvas?: RelatedArticleCanvasData[]
-  renderTime?: number
-  showTooltips?: boolean
-}
 
 export const FeatureLayout: React.SFC<ArticleProps> = props => {
   const {
     article,
+    backgroundColor,
     customEditorial,
+    color,
     display,
     isMobile,
     isSuper,
@@ -32,35 +24,43 @@ export const FeatureLayout: React.SFC<ArticleProps> = props => {
     renderTime,
     showTooltips,
   } = props
-  const { seriesArticle } = article
+  const { seriesArticle, hero_section } = article
 
-  // TODO: Allow more hero types to use series nav
-  const hasNav =
-    seriesArticle &&
-    article.hero_section &&
-    article.hero_section.type === "fullscreen"
+  const hasNav = seriesArticle && article.hero_section
   const sponsor = (seriesArticle && seriesArticle.sponsor) || article.sponsor
   const seriesOrSuper = isSuper || seriesArticle
 
   return (
-    <FeatureLayoutContainer>
+    <FeatureLayoutContainer
+      background={backgroundColor}
+      pt={hasNav && hero_section.type !== "fullscreen" ? "50px" : 0}
+    >
       {hasNav && (
         <Nav
+          backgroundColor={backgroundColor}
+          color={
+            color
+              ? color
+              : article.hero_section.type === "fullscreen"
+                ? "white"
+                : "black"
+          }
           canFix={false}
           sponsor={sponsor}
           title={seriesArticle.title}
           transparent
         />
       )}
-      <Header article={article} />
+      <Header article={article} textColor={color} />
 
-      <FeatureLayoutContent>
+      <Flex width="100%">
         <Sections
           article={article}
           isMobile={isMobile}
           showTooltips={showTooltips}
+          color={color}
         />
-      </FeatureLayoutContent>
+      </Flex>
 
       {seriesArticle && <ArticleCardsBlock {...props} />}
 
@@ -78,12 +78,7 @@ export const FeatureLayout: React.SFC<ArticleProps> = props => {
   )
 }
 
-const FeatureLayoutContent = styled.div`
-  display: flex;
-  width: 100%;
-`
-
-const FeatureLayoutContainer = styled.div`
+const FeatureLayoutContainer = styled(Box)`
   position: relative;
 
   ${NavContainer} {

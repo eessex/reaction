@@ -26,7 +26,7 @@ export class SeriesLayout extends Component<Props, null> {
 
     return (
       <SeriesContainer color={color} backgroundColor={backgroundColor}>
-        <Nav transparent sponsor={sponsor} canFix={false} />
+        <Nav transparent sponsor={sponsor} canFix={false} color={color} />
 
         <FixedBackground
           backgroundColor={backgroundColor}

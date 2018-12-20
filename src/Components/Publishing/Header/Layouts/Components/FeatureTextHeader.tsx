@@ -58,18 +58,13 @@ const Asset = styled.div`
   position: relative;
 `
 
-const TextHeaderContainer = styled.div.attrs<{ isEditing?: boolean }>({})`
+const TextHeaderContainer = styled.div<{
+  isEditing?: boolean
+}>`
   width: 100%;
   position: relative;
   height: auto;
   padding: ${space(2)}px;
-  margin-top: 50px;
-
-  ${props =>
-    props.isEditing &&
-    `
-    margin-top: 0;
-  `};
 
   ${Title} {
     margin-bottom: 150px;

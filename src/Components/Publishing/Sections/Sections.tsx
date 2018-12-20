@@ -13,8 +13,9 @@ import { Text } from "./Text"
 import { Video } from "./Video"
 
 interface Props {
-  DisplayPanel?: any
   article: ArticleData
+  color?: string
+  DisplayPanel?: any
   isMobile?: boolean
   showTooltips?: boolean
 }
@@ -141,7 +142,7 @@ export class Sections extends Component<Props, State> {
   }
 
   getSection(section, index) {
-    const { article, showTooltips } = this.props
+    const { article, color, showTooltips } = this.props
 
     const sections = {
       image_collection: (
@@ -151,13 +152,15 @@ export class Sections extends Component<Props, State> {
           images={section.images}
           targetHeight={500}
           gutter={10}
+          color={color}
         />
       ),
-      image_set: <ImageSetPreview section={section} />,
-      video: <Video section={section} />,
+      image_set: <ImageSetPreview section={section} color={color} />,
+      video: <Video section={section} color={color} />,
       embed: <Embed section={section} />,
       text: (
         <Text
+          color={color}
           html={section.body}
           layout={article.layout}
           isContentStart={index === this.getContentStartIndex()}
@@ -218,26 +221,28 @@ export class Sections extends Component<Props, State> {
 
   renderAuthors() {
     const {
+      color,
       article: { authors },
     } = this.props
 
     if (authors) {
       return (
         <SectionContainer>
-          <Authors authors={authors} />
+          <Authors authors={authors} color={color} />
         </SectionContainer>
       )
     }
   }
 
   renderPostScript() {
-    const { article } = this.props
+    const { article, color } = this.props
     const { layout, postscript } = article
 
     if (postscript) {
       return (
         <SectionContainer>
           <Text
+            color={color}
             html={postscript}
             layout={layout}
             postscript={Boolean(postscript)}
