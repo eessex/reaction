@@ -1,9 +1,9 @@
+import { Theme } from "@artsy/palette"
+import { EditorialFeature } from "Components/Publishing/EditorialFeature/EditorialFeature"
 import React from "react"
 import track, { TrackingProp } from "react-tracking"
-import Events from "../../Utils/Events"
-
-import { Theme } from "@artsy/palette"
 import { MediaContextProvider } from "Utils/Responsive"
+import Events from "../../Utils/Events"
 import { BannerWrapper } from "./Banner/Banner"
 import { PixelTracker } from "./Display/ExternalTrackers"
 import ArticleWithFullScreen from "./Layouts/ArticleWithFullScreen"
@@ -59,23 +59,27 @@ export interface ArticleProps {
 )
 export class Article extends React.Component<ArticleProps> {
   getArticleLayout = () => {
-    const { article } = this.props
+    const { article, customEditorial } = this.props
 
-    switch (article.layout) {
-      case "classic": {
-        return <ClassicLayout {...this.props} />
-      }
-      case "series": {
-        return <SeriesLayout {...this.props} />
-      }
-      case "video": {
-        return <VideoLayout {...this.props} />
-      }
-      case "news": {
-        return <NewsLayout {...this.props} />
-      }
-      default: {
-        return <ArticleWithFullScreen {...this.props} />
+    if (customEditorial) {
+      return <EditorialFeature {...this.props} />
+    } else {
+      switch (article.layout) {
+        case "classic": {
+          return <ClassicLayout {...this.props} />
+        }
+        case "series": {
+          return <SeriesLayout {...this.props} />
+        }
+        case "video": {
+          return <VideoLayout {...this.props} />
+        }
+        case "news": {
+          return <NewsLayout {...this.props} />
+        }
+        default: {
+          return <ArticleWithFullScreen {...this.props} />
+        }
       }
     }
   }

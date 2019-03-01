@@ -1,4 +1,3 @@
-import { EditorialFeature } from "Components/Publishing/EditorialFeature/EditorialFeature"
 import { cloneDeep, extend, includes, map } from "lodash"
 import React from "react"
 import track from "react-tracking"
@@ -10,15 +9,19 @@ import { ArticleData } from "../Typings"
 import { FeatureLayout } from "./FeatureLayout"
 import { StandardLayout } from "./StandardLayout"
 
-interface ArticleState {
-  fullscreenImages: any
+interface ArticleWithFullScreenState {
+  fullscreenImages: any[]
   article: ArticleData
+}
+
+interface ArticleWithFullScreenProps extends ArticleProps {
+  children?: any // For custom EditorialFeatures only!
 }
 
 @withFullScreen
 export class ArticleWithFullScreen extends React.Component<
-  ArticleProps,
-  ArticleState
+  ArticleWithFullScreenProps,
+  ArticleWithFullScreenState
 > {
   static defaultProps = {
     isMobile: false,
@@ -62,6 +65,7 @@ export class ArticleWithFullScreen extends React.Component<
   render() {
     const { article, fullscreenImages } = this.state
     const {
+      children,
       closeViewer,
       customEditorial,
       slideIndex,
@@ -77,12 +81,10 @@ export class ArticleWithFullScreen extends React.Component<
         shouldFetchData={this.props.showTooltips}
         onOpenAuthModal={onOpenAuthModal}
       >
-        {article.layout === "feature" ? (
-          customEditorial ? (
-            <EditorialFeature {...articleProps} />
-          ) : (
-            <FeatureLayout {...articleProps} />
-          )
+        {children && customEditorial ? (
+          React.cloneElement(children, articleProps)
+        ) : article.layout === "feature" ? (
+          <FeatureLayout {...articleProps} />
         ) : (
           <StandardLayout {...articleProps} />
         )}
