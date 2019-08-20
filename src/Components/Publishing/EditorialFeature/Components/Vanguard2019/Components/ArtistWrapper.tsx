@@ -85,7 +85,7 @@ export class VanguardArtistWrapper extends React.Component<
       this.getRandomSVG(section),
       section
     )
-    const backgroundColor = isExpanded ? color("black100") : color("white100")
+    const backgroundColor = isExpanded ? color("black100") : undefined
 
     return (
       <FullScreenProvider>

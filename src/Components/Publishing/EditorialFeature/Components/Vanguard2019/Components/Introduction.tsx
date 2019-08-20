@@ -35,7 +35,7 @@ export const VanguardIntroduction: React.SFC<{
 
           <Box textAlign="center" pt={50}>
             <Sans size="3t" weight="medium">
-              Video Headers by Alex John Beck
+              Video by Alex John Beck
             </Sans>
             <Sans size="3t" weight="medium">
               Video Editing by Nate DeYoung
