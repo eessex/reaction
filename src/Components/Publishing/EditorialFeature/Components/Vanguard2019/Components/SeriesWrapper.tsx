@@ -1,4 +1,4 @@
-import { Box, Flex, Sans, Serif } from "@artsy/palette"
+import { Box, Flex, media, Sans, Serif } from "@artsy/palette"
 import { Share } from "Components/Publishing/Byline/Share"
 import { getFullEditorialHref } from "Components/Publishing/Constants"
 import { VanguardVideoBackground } from "Components/Publishing/EditorialFeature/Components/Vanguard2019/Components/VanguardVideoBackground"
@@ -40,9 +40,15 @@ export const VanguardSeriesWrapper: React.SFC<{
         {isVideo && (
           <VanguardVideoBackground id={getVideoID(slugifiedTitle)} url={url} />
         )}
-        <Box mx="auto" maxWidth={1400} px={4}>
-          <Numeral size="12">{times(index + 1, () => "I")}</Numeral>
-          <Title size="16" textAlign="center" element="h2">
+        <Box mx="auto" maxWidth={["80vw", 1400]} px={4}>
+          <Numeral size={["10", "10", "10", "12"]}>
+            {times(index + 1, () => "I")}
+          </Numeral>
+          <Title
+            size={["12", "12", "12", "16"]}
+            textAlign="center"
+            element="h2"
+          >
             {title}
           </Title>
         </Box>
@@ -86,6 +92,9 @@ const SubTitle = styled(Serif)`
 
 const Numeral = styled(Serif)`
   position: absolute;
-  font-size: 100px;
   line-height: 1em;
+
+  ${media.xl`
+    font-size: 100px;
+  `}
 `
