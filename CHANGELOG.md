@@ -1,3 +1,125 @@
+# v17.6.1 (Fri Aug 23 2019)
+
+#### 🐛  Bug Fix
+
+- Add Reponsiveness to Primary and Subseries SVG Videos [#2729](https://github.com/artsy/reaction/pull/2729) ([@ashleyjelks](https://github.com/ashleyjelks))
+- New PR for improving CSS [#2734](https://github.com/artsy/reaction/pull/2734) ([@jiahaodavid](https://github.com/jiahaodavid))
+
+#### 🏠  Internal
+
+- Update dep webpack-bundle-analyzer from 3.3.2 to v3.4.1 [#2733](https://github.com/artsy/reaction/pull/2733) ([@renovate-bot](https://github.com/renovate-bot))
+
+#### Authors: 3
+
+- Ashley Jelks ([@ashleyjelks](https://github.com/ashleyjelks))
+- david huang ([@jiahaodavid](https://github.com/jiahaodavid))
+- Renovate Bot ([@renovate-bot](https://github.com/renovate-bot))
+
+---
+
+# v17.6.0 (Thu Aug 22 2019)
+
+#### 🚀  Enhancement
+
+- Revert "[Refactor] Replace <ArtworkFilter> in /collect " [#2732](https://github.com/artsy/reaction/pull/2732) ([@damassi](https://github.com/damassi))
+
+#### Authors: 1
+
+- Christopher Pappas ([@damassi](https://github.com/damassi))
+
+---
+
+# v17.5.3 (Thu Aug 22 2019)
+
+#### 🐛  Bug Fix
+
+- Revert "[ArtworkFilter] Ensure page is reset to 1 on filter change #trivial" [#2731](https://github.com/artsy/reaction/pull/2731) ([@damassi](https://github.com/damassi))
+
+#### Authors: 1
+
+- Christopher Pappas ([@damassi](https://github.com/damassi))
+
+---
+
+# v17.5.2 (Thu Aug 22 2019)
+
+#### 🐛  Bug Fix
+
+- PURCHASE-1386 - Adds VAT included in price to Artworks [#2725](https://github.com/artsy/reaction/pull/2725) ([@kierangillen](https://github.com/kierangillen))
+
+#### Authors: 1
+
+- Kieran Gillen ([@kierangillen](https://github.com/kierangillen))
+
+---
+
+# v17.5.1 (Thu Aug 22 2019)
+
+#### 🐛  Bug Fix
+
+- [ArtworkFilter] Ensure page is reset to 1 on filter change #trivial [#2728](https://github.com/artsy/reaction/pull/2728) ([@damassi](https://github.com/damassi))
+
+#### Authors: 1
+
+- Christopher Pappas ([@damassi](https://github.com/damassi))
+
+---
+
+# v17.5.0 (Thu Aug 22 2019)
+
+#### 🚀  Enhancement
+
+- [Refactor] Replace <ArtworkFilter> in /collect [#2714](https://github.com/artsy/reaction/pull/2714) ([@damassi](https://github.com/damassi))
+
+#### Authors: 1
+
+- Christopher Pappas ([@damassi](https://github.com/damassi))
+
+---
+
+# v17.4.1 (Wed Aug 21 2019)
+
+#### 🐛  Bug Fix
+
+- [CollectionsHubsNav] Restyle collection hub nav according to new designs [#2723](https://github.com/artsy/reaction/pull/2723) ([@pepopowitz](https://github.com/pepopowitz))
+
+#### Authors: 1
+
+- Steven Hicks ([@pepopowitz](https://github.com/pepopowitz))
+
+---
+
+# v17.4.0 (Wed Aug 21 2019)
+
+#### 🚀  Enhancement
+
+- Update Auction registration form
+
+- Add CountrySelect input to form
+- Update Auctions-related Storybook entries
+- Add Metaphytics API error handling
+- Update register redirect rules
+
+Co-authored-by: Erik Stockmeier <erik.d.stock@gmail.com> [#2703](https://github.com/artsy/reaction/pull/2703) ([@dblandin](https://github.com/dblandin))
+
+#### Authors: 1
+
+- Devon Blandin ([@dblandin](https://github.com/dblandin))
+
+---
+
+# v17.3.0 (Wed Aug 21 2019)
+
+#### 🚀  Enhancement
+
+- Auction post-registration modal (migrating from force) [#2702](https://github.com/artsy/reaction/pull/2702) ([@erikdstock](https://github.com/erikdstock))
+
+#### Authors: 1
+
+- Erik ([@erikdstock](https://github.com/erikdstock))
+
+---
+
 # v17.2.3 (Tue Aug 20 2019)
 
 #### 🐛  Bug Fix
