@@ -39,16 +39,29 @@ export class SelectedCareerAchievements extends React.Component<
   }
 
   renderAuctionHighlight() {
+    const { auctionResults } = this.props.artist
     if (
-      !this.props.artist.auctionResults ||
-      this.props.artist.auctionResults.edges.length < 1
+      !auctionResults ||
+      (auctionResults &&
+        auctionResults.edges &&
+        auctionResults.edges.length < 1)
     ) {
       return null
     }
-    const topAuctionResult = this.props.artist.auctionResults.edges[0].node
-    const display = `${topAuctionResult.price_realized.display}, ${
-      topAuctionResult.organization
-    }, ${topAuctionResult.sale_date}`
+    const topAuctionResult =
+      auctionResults &&
+      auctionResults.edges &&
+      auctionResults.edges[0] &&
+      auctionResults.edges[0].node &&
+      auctionResults.edges[0].node !== null &&
+      auctionResults.edges[0].node
+
+    const display = topAuctionResult
+      ? `${topAuctionResult.price_realized &&
+          topAuctionResult.price_realized.display}, ${
+          topAuctionResult.organization
+        }, ${topAuctionResult.sale_date}`
+      : undefined
 
     return (
       <ArtistInsight
@@ -61,7 +74,7 @@ export class SelectedCareerAchievements extends React.Component<
   }
   renderGalleryRepresentation() {
     const { highlights } = this.props.artist
-    const { partners } = highlights
+    const partners = highlights && highlights.partners
     if (partners && partners.edges && partners.edges.length > 0) {
       const highCategory = highestCategory(partners.edges)
       const type = highCategory.toUpperCase().replace("-", "_")
@@ -90,6 +103,7 @@ export class SelectedCareerAchievements extends React.Component<
 
   render() {
     if (
+      // @ts-ignore - types of highlights are incompatible
       !hasSections(this.props.artist) &&
       (!this.props.artist.insights || this.props.artist.insights.length === 0)
     ) {
@@ -124,9 +138,11 @@ export class SelectedCareerAchievements extends React.Component<
               {this.renderGalleryRepresentation()}
               {this.renderAuctionHighlight()}
 
-              {this.props.artist.insights.map(insight => {
-                return this.renderInsight(insight)
-              })}
+              {this.props.artist &&
+                this.props.artist.insights &&
+                this.props.artist.insights.map(insight => {
+                  return this.renderInsight(insight)
+                })}
             </Flex>
           </Flex>
         </Container>

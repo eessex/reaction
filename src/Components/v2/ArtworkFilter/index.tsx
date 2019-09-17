@@ -125,7 +125,7 @@ export const BaseArtworkFilter: React.FC<{
       ...relayVariables,
     }
 
-    relay.refetch(relayRefetchVariables, null, error => {
+    relay.refetch(relayRefetchVariables, undefined, error => {
       if (error) {
         console.error(error)
       }

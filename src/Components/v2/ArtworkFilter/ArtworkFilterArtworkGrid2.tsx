@@ -7,7 +7,10 @@ import { useSystemContext } from "Artsy"
 import ArtworkGrid from "Components/ArtworkGrid"
 import { LoadingArea } from "../LoadingArea"
 import { PaginationFragmentContainer as Pagination } from "../Pagination"
-import { useArtworkFilterContext } from "./ArtworkFilterContext"
+import {
+  ArtworkFilterContextProps,
+  useArtworkFilterContext,
+} from "./ArtworkFilterContext"
 
 interface ArtworkFilterArtworkGridProps {
   columnCount: number[]
@@ -20,23 +23,21 @@ const ArtworkFilterArtworkGrid: React.FC<
   ArtworkFilterArtworkGridProps
 > = props => {
   const { user, mediator } = useSystemContext()
-  const context = useArtworkFilterContext()
+  const context: ArtworkFilterContextProps = useArtworkFilterContext()
 
   const {
     columnCount,
     filtered_artworks: { artworks },
   } = props
 
-  const {
-    pageInfo: { hasNextPage },
-  } = artworks
+  const { pageInfo } = artworks
 
   /**
    * Load next page of artworks
    */
   function loadNext() {
-    if (hasNextPage) {
-      loadPage(context.filters.page + 1)
+    if (pageInfo.hasNextPage) {
+      loadPage(context.filters && context.filters.page + 1)
     }
   }
 
@@ -49,7 +50,7 @@ const ArtworkFilterArtworkGrid: React.FC<
 
   return (
     <>
-      <LoadingArea isLoading={props.isLoading}>
+      <LoadingArea isLoading={props.isLoading || false}>
         <ArtworkGrid
           artworks={artworks as any}
           columnCount={columnCount}
@@ -70,8 +71,8 @@ const ArtworkFilterArtworkGrid: React.FC<
 
         <Box>
           <Pagination
-            hasNextPage={artworks.pageInfo.hasNextPage}
-            pageCursors={artworks.pageCursors as any}
+            hasNextPage={(artworks && artworks.pageInfo.hasNextPage) || false}
+            pageCursors={artworks && (artworks.pageCursors as any)}
             onClick={(_cursor, page) => loadPage(page)}
             onNext={() => loadNext()}
             scrollTo="#jump--artworkFilter"

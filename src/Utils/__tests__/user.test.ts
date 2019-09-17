@@ -16,7 +16,7 @@ describe("user", () => {
     it("returns false when user doesn't exist", () => {
       const featureName = "my feature"
 
-      const result = userHasLabFeature(null, featureName)
+      const result = userHasLabFeature(undefined, featureName)
 
       expect(result).toEqual(false)
     })
@@ -43,7 +43,7 @@ describe("user", () => {
 
   describe("userIsAdmin", () => {
     it("returns undefined if user is undefined", () => {
-      const user: User = undefined
+      const user: User | undefined = undefined
 
       const result = userIsAdmin(user)
 

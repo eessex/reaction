@@ -23,15 +23,20 @@ const Metadata = createFragmentContainer(
 )
 
 export const Artwork = createFragmentContainer(
-  (props: { artwork: MockRelayRendererFixtures_artwork }) => (
-    <div>
-      <img src={props.artwork.image.url} />
-      <Metadata artworkMetadata={props.artwork} />
-      {props.artwork.artist && (
-        <ArtistQueryRenderer id={props.artwork.artist.id} />
-      )}
-    </div>
-  ),
+  (props: { artwork: MockRelayRendererFixtures_artwork }) => {
+    const {
+      artwork: { image },
+    } = props
+    return (
+      <div>
+        {image && image.url && <img src={image.url} />}
+        <Metadata artworkMetadata={props.artwork} />
+        {props.artwork.artist && (
+          <ArtistQueryRenderer id={props.artwork.artist.id} />
+        )}
+      </div>
+    )
+  },
   {
     artwork: graphql`
       fragment MockRelayRendererFixtures_artwork on Artwork {
@@ -63,20 +68,22 @@ const Artist = createFragmentContainer(
 const ArtistQueryRenderer = (props: { id: string }) => (
   <SystemContextConsumer>
     {({ relayEnvironment }) => {
-      return (
-        <QueryRenderer<MockRelayRendererFixturesArtistQuery>
-          environment={relayEnvironment}
-          variables={props}
-          query={graphql`
-            query MockRelayRendererFixturesArtistQuery($id: String!) {
-              artist(id: $id) {
-                ...MockRelayRendererFixtures_artist
+      if (relayEnvironment) {
+        return (
+          <QueryRenderer<MockRelayRendererFixturesArtistQuery>
+            environment={relayEnvironment}
+            variables={props}
+            query={graphql`
+              query MockRelayRendererFixturesArtistQuery($id: String!) {
+                artist(id: $id) {
+                  ...MockRelayRendererFixtures_artist
+                }
               }
-            }
-          `}
-          render={renderWithLoadProgress(Artist)}
-        />
-      )
+            `}
+            render={renderWithLoadProgress(Artist)}
+          />
+        )
+      }
     }}
   </SystemContextConsumer>
 )

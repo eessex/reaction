@@ -1,7 +1,13 @@
 import { get } from "./get"
 
-export function getUser(user: User | null | undefined): User | null {
-  let _user = user
+export function getUser(user: User | null | undefined): User | undefined {
+  let _user: User | undefined
+
+  if (user === null) {
+    _user = undefined
+  } else {
+    _user = user
+  }
 
   if (_user === undefined) {
     const id = process.env.USER_ID
@@ -25,8 +31,11 @@ export function getUser(user: User | null | undefined): User | null {
   return _user
 }
 
-export function userHasLabFeature(user: User, featureName: string): boolean {
-  const lab_features = get(user, u => u.lab_features, [])
+export function userHasLabFeature(
+  user: User | undefined,
+  featureName: string
+): boolean {
+  const lab_features: string[] = get(user, u => u && u.lab_features, []) || []
 
   return lab_features.includes(featureName)
 }

@@ -34,7 +34,7 @@ export interface ArtworkFilters {
   width: string
 }
 
-interface ArtworkFilterContextProps {
+export interface ArtworkFilterContextProps {
   filters?: ArtworkFilters
 
   // Components
@@ -332,5 +332,5 @@ const artworkFilterReducer = (state, action) => {
  */
 export const useArtworkFilterContext = () => {
   const artworkFilterContext = useContext(ArtworkFilterContext)
-  return artworkFilterContext
+  return artworkFilterContext as ArtworkFilterContextProps
 }

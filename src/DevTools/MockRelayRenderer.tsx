@@ -49,7 +49,7 @@ export interface MockRelayRendererProps<
 }
 
 export interface MockRelayRendererState {
-  caughtError: {
+  caughtError?: {
     error: any
     errorInfo: any
   }
@@ -136,8 +136,12 @@ export interface MockRelayRendererState {
 export class MockRelayRenderer<
   T extends OperationBase = OperationDefaults
 > extends React.Component<MockRelayRendererProps<T>, MockRelayRendererState> {
-  state = {
-    caughtError: undefined,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      caughtError: undefined,
+    }
   }
 
   componentDidCatch(error, errorInfo) {
@@ -196,7 +200,7 @@ export class MockRelayRenderer<
       )
     }
 
-    if (this.state.caughtError) {
+    if (this.state.caughtError !== undefined) {
       const { error, errorInfo } = this.state.caughtError
       console.error({ error, errorInfo })
       return `Error occurred while rendering Relay component: ${error}`

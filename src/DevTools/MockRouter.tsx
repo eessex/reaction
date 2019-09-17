@@ -77,7 +77,10 @@ export class MockRouter extends React.Component<Props> {
 
     return (
       <React.Fragment>
-        {ClientApp && <ClientApp {...this.props.initialState} />}
+        {ClientApp && (
+          // @ts-ignore - JSX element type 'ClientApp' does not have any construct or call signatures.
+          <ClientApp {...this.props.initialState} />
+        )}
       </React.Fragment>
     )
   }

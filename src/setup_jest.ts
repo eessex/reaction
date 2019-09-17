@@ -29,6 +29,7 @@ import "jsdom"
 
 if (typeof window !== "undefined") {
   window.open = jest.fn()
+  // @ts-ignore
   window.matchMedia = undefined
   window.grecaptcha = {
     ready: jest.fn(cb => cb()),
@@ -52,7 +53,8 @@ if (process.env.ALLOW_CONSOLE_LOGS !== "true") {
     if (args[0] instanceof Error) {
       const msg = explanation + chalk.red(args[0].message)
       const err = new Error(msg)
-      err.stack = args[0].stack.replace(`Error: ${args[0].message}`, msg)
+      err.stack =
+        args[0].stack && args[0].stack.replace(`Error: ${args[0].message}`, msg)
       return err
     } else {
       const err = new Error(

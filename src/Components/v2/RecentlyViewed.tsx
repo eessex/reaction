@@ -47,7 +47,10 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
                 <Spacer mb={3} />
 
                 <Carousel
-                  data={me.recentlyViewedArtworks.edges as object[]}
+                  data={
+                    me.recentlyViewedArtworks &&
+                    (me.recentlyViewedArtworks.edges as object[])
+                  }
                   render={artwork => {
                     const aspect_ratio = get(
                       artwork,
@@ -79,9 +82,13 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
                   renderRightArrow={({ Arrow }) => {
                     return (
                       <ArrowContainer>
-                        {me.recentlyViewedArtworks.edges.length > 4 && (
-                          <Arrow />
-                        )}
+                        {me &&
+                          me.recentlyViewedArtworks &&
+                          me.recentlyViewedArtworks &&
+                          me.recentlyViewedArtworks.edges &&
+                          me.recentlyViewedArtworks.edges.length > 4 && (
+                            <Arrow />
+                          )}
                       </ArrowContainer>
                     )
                   }}
@@ -97,6 +104,7 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
 
 const ArrowContainer = styled(Box)`
   align-self: flex-start;
+
   ${ArrowButton} {
     height: 60%;
   }
@@ -130,6 +138,7 @@ export const RecentlyViewedQueryRenderer = () => {
   }
   return (
     <QueryRenderer<RecentlyViewedQuery>
+      // @ts-ignore is maybe undefined, Environment required
       environment={relayEnvironment}
       variables={{}}
       query={graphql`

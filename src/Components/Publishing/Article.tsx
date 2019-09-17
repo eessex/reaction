@@ -34,8 +34,8 @@ export interface ArticleProps {
   seriesArticle?: ArticleData
   isHovered?: boolean
   isLoggedIn?: boolean
-  isMobile?: boolean
-  isTablet?: boolean
+  isMobile: boolean
+  isTablet: boolean
   infiniteScrollEntrySlug?: string
   isSuper?: boolean
   isTruncated?: boolean

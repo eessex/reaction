@@ -34,7 +34,7 @@ class Component extends React.Component {
 describe("renderUntil", () => {
   describe("as an enzyme API extension", () => {
     it("yields an enzyme wrapper to the `until` block until it returns true", async () => {
-      const states = []
+      const states: string[] = []
       await mount(<Component />).renderUntil(tree => {
         const text = tree.find("div").text()
         states.push(text)
@@ -53,7 +53,7 @@ describe("renderUntil", () => {
 
   describe("deprecated usage", () => {
     it("yields an enzyme wrapper to the `until` block until it returns true", async () => {
-      const states = []
+      const states: string[] = []
       await renderUntil(wrapper => {
         const text = wrapper.find("div").text()
         states.push(text)

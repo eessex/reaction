@@ -91,6 +91,7 @@ export class Wizard extends React.Component<WizardProps, WizardState> {
       currentStep: this.currentStep,
       isLastStep: this.isLastStep,
       previous: this.previous,
+      // @ts-ignore - expects generic values over formik values
       next: this.handleSubmit,
       currentStepIndex: this.state.currentStepIndex,
       steps: this.steps,
@@ -129,16 +130,16 @@ export class Wizard extends React.Component<WizardProps, WizardState> {
       // If exist, call onSubmit on the current step
       const onSubmit = this.currentStep.props.onSubmit
       if (onSubmit) {
-        actions.setSubmitting(true)
+        actions && actions.setSubmitting(true)
         const result = onSubmit(values, actions)
 
         if (result instanceof Boolean) {
-          actions.setSubmitting(false)
+          actions && actions.setSubmitting(false)
           return result
         } else {
           return (result as Promise<boolean>).then(shouldGoNext => {
             if (shouldGoNext) {
-              actions.setSubmitting(false)
+              actions && actions.setSubmitting(false)
               this.next(null, values)
             }
           })
@@ -156,6 +157,7 @@ export class Wizard extends React.Component<WizardProps, WizardState> {
     return (
       <Formik
         initialValues={initialValues}
+        // @ts-ignore - expects generic values over formik values
         validate={validate}
         validationSchema={validationSchema}
         validateOnChange={false}

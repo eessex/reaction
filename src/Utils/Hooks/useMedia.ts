@@ -66,6 +66,8 @@ export function useMatchMedia(
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia(mediaQueryString)
+    // FIXME: setMatches does not accept boolean
+    // @ts-ignore
     setMatches(mediaQueryList.matches)
     const handleChange = event => setMatches(event.matches)
 

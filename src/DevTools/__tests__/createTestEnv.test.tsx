@@ -113,7 +113,8 @@ const Component = createFragmentContainer(
     <div>
       <h1>This is the main heading</h1>
       <p>
-        The artwork is {artwork.title} by {artwork.artist.name}
+        The artwork is {artwork.title}
+        {artwork && artwork.artist && ` by ${artwork.artist.name}`}
       </p>
       <button
         onClick={() =>

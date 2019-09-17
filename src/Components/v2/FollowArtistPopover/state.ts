@@ -5,7 +5,7 @@ interface State {
 }
 
 export class FollowArtistPopoverState extends Container<State> {
-  state = { excludeArtistIds: [] }
+  state = { excludeArtistIds: [] as string[] }
 
   constructor(props: State) {
     super()

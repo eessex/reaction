@@ -71,7 +71,10 @@ export const createMockFetchQuery = ({
       // whether to resolve fields in a given value
       if (typeof source !== "object") {
         const parentPath = pathAsArray.slice(0, -1).join("/")
-        const operationName = get(info, i => i.operation.name.value)
+        const operationName = get(
+          info,
+          i => i && i.operation && i.operation.name && i.operation.name.value
+        )
         throw new Error(
           `The value at path '${parentPath}' for operation '${operationName}' should be an object but is a ${typeof source}.`
         )
@@ -219,7 +222,12 @@ function error(
     renderMessage({
       path: responsePathAsArray(info.path).join("/"),
       type: info.returnType.inspect(),
-      operationName: get(info, i => i.operation.name.value, "(unknown)"),
+      // @ts-ignore - operationName could be undefined
+      operationName: get(
+        info,
+        i => i && i.operation && i.operation.name && i.operation.name.value,
+        "(unknown)"
+      ),
     })
   )
 }

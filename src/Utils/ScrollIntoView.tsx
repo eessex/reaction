@@ -18,14 +18,14 @@ export class ScrollIntoView extends React.Component<ScrollIntoViewProps> {
     }
   }
 
-  scrollIntoView = event => {
+  scrollIntoView = _event => {
     const { selector, offset } = this.props
     const $element = document.querySelector(selector)
 
     if ($element) {
       const { top } = this.getElementPosition($element)
       window.scrollTo({
-        top: top - offset,
+        top: top - (offset || 0),
       })
     }
   }

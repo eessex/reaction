@@ -19,7 +19,7 @@
     "pretty": true,
     "rootDir": "src",
     "sourceMap": true,
-    "strictNullChecks": true,
+    // "strictNullChecks": true,
     "target": "es2015",
     "paths": {
       "storybook/*": ["./__stories__/*"],

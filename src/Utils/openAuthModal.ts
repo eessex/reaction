@@ -62,7 +62,7 @@ interface MobileIntent {
   entityName: string
 }
 
-function getMobileAuthIntent(reason: AuthReason): MobileIntent {
+function getMobileAuthIntent(reason: AuthReason): MobileIntent | undefined {
   switch (reason.intent) {
     case AuthModalIntent.FollowArtist:
       return getMobileIntentToFollowArtist(reason)
@@ -136,7 +136,7 @@ interface DesktopIntent {
   }
 }
 
-function getDesktopAuthIntent(reason: AuthReason): DesktopIntent {
+function getDesktopAuthIntent(reason: AuthReason): DesktopIntent | undefined {
   switch (reason.intent) {
     case AuthModalIntent.FollowArtist:
       return getDesktopIntentToFollowArtist(reason)
