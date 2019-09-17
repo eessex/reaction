@@ -7,6 +7,7 @@ import { Vanguard2019 } from "./Components/Vanguard2019"
 
 export interface EditorialFeaturesProps extends ArticleProps {
   isTest?: boolean
+  isMobile: boolean
 }
 
 export const EditorialFeature: React.SFC<EditorialFeaturesProps> = props => {

@@ -13,8 +13,7 @@ export const VanguardIntroduction: React.SFC<{
   isMobile: boolean
 }> = props => {
   const { isMobile } = props
-  const { description } = props.article.series
-  const { hero_section } = props.article
+  const { hero_section, series } = props.article
   const url = ((hero_section && hero_section.url) || "") as string
   const isVideo = url.includes("mp4")
 
@@ -59,9 +58,11 @@ export const VanguardIntroduction: React.SFC<{
             {!isMobile && <VanguardCredits isMobile={isMobile} />}
           </Flex>
 
-          <Box pb={12}>
-            <Text layout="standard" html={description} width="800px" />
-          </Box>
+          {series && series.description && (
+            <Box pb={12}>
+              <Text layout="standard" html={series.description} width="800px" />
+            </Box>
+          )}
         </Box>
       </Box>
     </IntroContainer>

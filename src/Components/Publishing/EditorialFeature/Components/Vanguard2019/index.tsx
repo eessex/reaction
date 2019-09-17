@@ -54,7 +54,7 @@ export class Vanguard2019 extends React.Component<
   }
 
   getValidPaths = () => {
-    const validPaths = []
+    const validPaths: string[] = []
 
     this.props.article.relatedArticles.forEach(series => {
       // get subSeries slug

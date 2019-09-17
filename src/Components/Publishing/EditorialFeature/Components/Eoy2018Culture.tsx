@@ -53,7 +53,7 @@ export class Eoy2018Culture extends React.Component<
           <Serif size="5">
             <Text
               html={section.body}
-              layout={layout}
+              layout={layout || "feature"}
               showTooltips={showTooltips}
               color={isDark ? "white" : color("black100")}
             />
@@ -107,9 +107,9 @@ export class Eoy2018Culture extends React.Component<
     return isHeader
   }
 
-  makeSectionArrays = sections => {
-    const chapters = []
-    let currentChapter = null
+  makeSectionArrays = (sections: SectionData[]) => {
+    const chapters: SectionData[] = []
+    let currentChapter: number | null = null
 
     sections.map((section, i) => {
       if (this.sectionIsHeader(section)) {
@@ -120,10 +120,13 @@ export class Eoy2018Culture extends React.Component<
         }
       }
 
-      if (i !== 0) {
+      if (i !== 0 && currentChapter !== null) {
         if (chapters.length && chapters[currentChapter]) {
+          // FIXME: this confuses me, probably a bug
+          // @ts-ignore
           chapters[currentChapter].push(section)
         } else {
+          // @ts-ignore
           chapters[currentChapter] = [section]
         }
       }
@@ -159,7 +162,8 @@ export class Eoy2018Culture extends React.Component<
 
   render() {
     const { article } = this.props
-    const chapters = this.makeSectionArrays(article.sections)
+    const chapters =
+      article.sections && this.makeSectionArrays(article.sections)
     const introText =
       article.sections && article.sections[0] && article.sections[0].body
 
@@ -220,31 +224,32 @@ export class Eoy2018Culture extends React.Component<
           />
         </TextContainer>
 
-        {chapters.map((chapter, i) => {
-          const isDark = i % 2 === 0
-          return (
-            <ChapterWrapper isDark={isDark} key={i}>
-              <Waypoint
-                onLeave={({ currentPosition, previousPosition }) => {
-                  if (
-                    previousPosition === "inside" &&
-                    currentPosition === "above"
-                  ) {
-                    this.setState({ stickyHeader: chapter[0] })
-                  }
-                }}
-              />
-              {this.getSections(chapter, isDark)}
-              <Waypoint
-                onEnter={({ previousPosition }) => {
-                  if (previousPosition === "above") {
-                    this.setState({ stickyHeader: chapter[0] })
-                  }
-                }}
-              />
-            </ChapterWrapper>
-          )
-        })}
+        {chapters &&
+          chapters.map((chapter, i) => {
+            const isDark = i % 2 === 0
+            return (
+              <ChapterWrapper isDark={isDark} key={i}>
+                <Waypoint
+                  onLeave={({ currentPosition, previousPosition }) => {
+                    if (
+                      previousPosition === "inside" &&
+                      currentPosition === "above"
+                    ) {
+                      this.setState({ stickyHeader: chapter[0] })
+                    }
+                  }}
+                />
+                {this.getSections(chapter, isDark)}
+                <Waypoint
+                  onEnter={({ previousPosition }) => {
+                    if (previousPosition === "above") {
+                      this.setState({ stickyHeader: chapter[0] })
+                    }
+                  }}
+                />
+              </ChapterWrapper>
+            )
+          })}
 
         {article.relatedArticles && (
           <Box px={[10, 10, 55]} my={40} mx="auto">
@@ -263,9 +268,11 @@ const ArticleWrapper = styled.div`
     border-bottom-width: ${BORDER_WIDTH}px;
     border-top: ${BORDER_WIDTH}px solid black;
   }
+
   ${DateContainer} {
     margin-top: 0;
   }
+
   ${StyledAuthor} {
     margin-top: 0;
 
@@ -347,6 +354,7 @@ const SectionHeader = styled(Box)<{ isDark?: boolean }>`
     margin: 0;
     font-weight: inherit;
   }
+
   h2 {
     font-size: 50px;
     width: fit-content;
@@ -429,8 +437,10 @@ const ImageSetWrapper = styled(SectionWrapper)`
     ${SlideshowTitle} {
       display: none;
     }
+
     ${SlideshowCta} {
       flex-direction: column;
+
       > div {
         padding: 0;
       }
@@ -451,6 +461,7 @@ const StickyHeader = styled.div`
   h1 {
     font-size: 40px;
   }
+
   h2 {
     font-size: 35px;
   }

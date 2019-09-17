@@ -60,9 +60,13 @@ export class VanguardArtistWrapper extends React.Component<
     const { isExpanded } = this.state
 
     if (isExpanded) {
+      // FIXME:  Object is possibly null
+      // @ts-ignore
+      const containerTop = this.artistWrapper.getBoundingClientRect().top
+
       window.scrollTo({
         behavior: "smooth",
-        top: this.artistWrapper.getBoundingClientRect().top + window.scrollY,
+        top: containerTop + window.scrollY,
       })
     }
 
@@ -177,7 +181,7 @@ export class VanguardArtistWrapper extends React.Component<
                 hideAds
                 article={article}
                 customWidth={920}
-                isTruncatedAt={!isExpanded && 2}
+                isTruncatedAt={!isExpanded ? 2 : undefined}
               />
 
               <ReadMoreButton
