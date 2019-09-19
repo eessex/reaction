@@ -37,8 +37,16 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
     return (
       <SystemContextConsumer>
         {({ user, mediator }) => {
+          if (!me || (me && !me.recentlyViewedArtworks)) {
+            return null
+          }
+          const edges = get(
+            me.recentlyViewedArtworks,
+            w => w && w.edges
+          ) as object[]
+
           return (
-            me && (
+            edges && (
               <React.Fragment>
                 <Separator my={6} />
 
@@ -47,7 +55,7 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
                 <Spacer mb={3} />
 
                 <Carousel
-                  data={me.recentlyViewedArtworks.edges as object[]}
+                  data={edges}
                   render={artwork => {
                     const aspect_ratio = get(
                       artwork,
@@ -79,9 +87,7 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
                   renderRightArrow={({ Arrow }) => {
                     return (
                       <ArrowContainer>
-                        {me.recentlyViewedArtworks.edges.length > 4 && (
-                          <Arrow />
-                        )}
+                        {edges.length > 4 && <Arrow />}
                       </ArrowContainer>
                     )
                   }}
@@ -97,6 +103,7 @@ export class RecentlyViewed extends React.Component<RecentlyViewedProps> {
 
 const ArrowContainer = styled(Box)`
   align-self: flex-start;
+
   ${ArrowButton} {
     height: 60%;
   }
@@ -125,7 +132,7 @@ export const RecentlyViewedFragmentContainer = createFragmentContainer(
 
 export const RecentlyViewedQueryRenderer = () => {
   const { user, relayEnvironment } = useContext(SystemContext)
-  if (!user) {
+  if (!user || !relayEnvironment) {
     return null
   }
   return (
