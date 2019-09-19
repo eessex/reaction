@@ -25,7 +25,7 @@ export class ScrollIntoView extends React.Component<ScrollIntoViewProps> {
     if ($element) {
       const { top } = this.getElementPosition($element)
       window.scrollTo({
-        top: top - offset,
+        top: top - (offset || 0),
       })
     }
   }

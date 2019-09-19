@@ -22,13 +22,13 @@ export function getUser(user: User | null | undefined): User | null {
     }
   }
 
-  return _user
+  return _user || null
 }
 
 export function userHasLabFeature(user: User, featureName: string): boolean {
   const lab_features = get(user, u => u.lab_features, [])
 
-  return lab_features.includes(featureName)
+  return lab_features ? lab_features.includes(featureName) : false
 }
 
 export function userIsAdmin(user?: User): boolean {
