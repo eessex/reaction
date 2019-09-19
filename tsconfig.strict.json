@@ -1,0 +1,32 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "typeRoots": ["./typings"]
+  },
+  "include": [
+    "typings/*.d.ts",
+    "src/Apps/Collect2/Routes/Collections/index.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "data",
+    "externals",
+    "danger",
+    "src/__generated__/**.ts",
+    "src/Apps/Artist",
+    "src/Apps/Artwork",
+    "src/Apps/Auction",
+    "src/Apps/Components",
+    "src/Apps/Order",
+    "src/Apps/Search",
+    "src/Apps/WorksForYou",
+    "src/Artsy",
+    "src/Assets",
+    "src/Components",
+    "src/DevTools",
+    "src/Utils",
+    "src/*.ts"
+  ]
+}
