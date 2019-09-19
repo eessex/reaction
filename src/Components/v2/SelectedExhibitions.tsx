@@ -145,7 +145,8 @@ export class SelectedExhibitionsContainer extends React.Component<
   render() {
     if (
       !this.props.exhibitions.length ||
-      this.props.totalExhibitions < MIN_EXHIBITIONS
+      (this.props.totalExhibitions &&
+        this.props.totalExhibitions < MIN_EXHIBITIONS)
     ) {
       return null
     }
@@ -165,21 +166,22 @@ export class SelectedExhibitionsContainer extends React.Component<
         <Flex flexDirection="column">
           <ExhibitionsHeadline
             expanded={this.state.expanded}
-            collapsible={this.props.collapsible}
+            collapsible={this.props.collapsible || false}
             exhibitionCount={this.props.exhibitions.length}
             onShowClicked={() => this.setState({ expanded: true })}
           />
           {!isCollapsed({
             expanded: this.state.expanded,
             ...this.props,
-          }) && (
-            <FullExhibitionList
-              artistID={this.props.artistID}
-              exhibitions={this.props.exhibitions}
-              totalExhibitions={this.props.totalExhibitions}
-              ViewAllLink={this.props.ViewAllLink}
-            />
-          )}
+          }) &&
+            this.props.artistID && (
+              <FullExhibitionList
+                artistID={this.props.artistID}
+                exhibitions={this.props.exhibitions}
+                totalExhibitions={this.props.totalExhibitions || 0}
+                ViewAllLink={this.props.ViewAllLink}
+              />
+            )}
         </Flex>
       </Container>
     )
