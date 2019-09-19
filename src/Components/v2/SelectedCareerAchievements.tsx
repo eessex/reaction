@@ -39,29 +39,51 @@ export class SelectedCareerAchievements extends React.Component<
   }
 
   renderAuctionHighlight() {
+    const { artist } = this.props
+    if (!artist) {
+      return null
+    }
+
     if (
-      !this.props.artist.auctionResults ||
-      this.props.artist.auctionResults.edges.length < 1
+      !artist.auctionResults ||
+      (artist.auctionResults &&
+        artist.auctionResults.edges &&
+        artist.auctionResults.edges.length < 1)
     ) {
       return null
     }
-    const topAuctionResult = this.props.artist.auctionResults.edges[0].node
-    const display = `${topAuctionResult.price_realized.display}, ${
-      topAuctionResult.organization
-    }, ${topAuctionResult.sale_date}`
+
+    const topAuctionResult =
+      artist.auctionResults.edges &&
+      artist.auctionResults.edges[0] &&
+      artist.auctionResults.edges[0] &&
+      // @ts-ignore, not sure how to make not-null
+      artist.auctionResults.edges[0].node
+
+    const display =
+      topAuctionResult &&
+      `${topAuctionResult.price_realized &&
+        topAuctionResult.price_realized.display}, ${
+        topAuctionResult.organization
+      }, ${topAuctionResult.sale_date}`
 
     return (
       <ArtistInsight
         key="HIGH_AUCTION"
         type="HIGH_AUCTION"
         label="High auction record"
-        value={display}
+        value={display || undefined}
       />
     )
   }
+
   renderGalleryRepresentation() {
+    if (!this.props.artist) {
+      return null
+    }
+
     const { highlights } = this.props.artist
-    const { partners } = highlights
+    const partners = highlights && highlights.partners
     if (partners && partners.edges && partners.edges.length > 0) {
       const highCategory = highestCategory(partners.edges)
       const type = highCategory.toUpperCase().replace("-", "_")
@@ -89,8 +111,12 @@ export class SelectedCareerAchievements extends React.Component<
   }
 
   render() {
+    if (!this.props.artist) {
+      return null
+    }
+
     if (
-      !hasSections(this.props.artist) &&
+      !hasSections(this.props.artist as any) &&
       (!this.props.artist.insights || this.props.artist.insights.length === 0)
     ) {
       return null
@@ -124,9 +150,11 @@ export class SelectedCareerAchievements extends React.Component<
               {this.renderGalleryRepresentation()}
               {this.renderAuctionHighlight()}
 
-              {this.props.artist.insights.map(insight => {
-                return this.renderInsight(insight)
-              })}
+              {this.props.artist &&
+                this.props.artist.insights &&
+                this.props.artist.insights.map(insight => {
+                  return this.renderInsight(insight)
+                })}
             </Flex>
           </Flex>
         </Container>
