@@ -24,7 +24,7 @@ export class Pagination extends React.Component<Props> {
   static defaultProps = {
     onClick: _cursor => ({}),
     onNext: () => ({}),
-    scrollTo: null,
+    scrollTo: undefined,
   }
 
   render() {
