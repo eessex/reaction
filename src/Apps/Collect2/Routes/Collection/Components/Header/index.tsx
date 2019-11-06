@@ -190,14 +190,14 @@ export const CollectionHeader: FC<Props> = ({ artworks, collection }) => {
           mediator,
           user
         )
-        const resizedHeaderImage =
-          collection.headerImage &&
-          resize(collection.headerImage, {
-            width: imageWidth * (xs ? 2 : 1),
-            height: imageHeight * (xs ? 2 : 1),
-            quality: 80,
-            convert_to: "jpg",
-          })
+        const resizedHeaderImage = false
+        // collection.headerImage &&
+        // resize(collection.headerImage, {
+        //   width: imageWidth * (xs ? 2 : 1),
+        //   height: imageHeight * (xs ? 2 : 1),
+        //   quality: 80,
+        //   convert_to: "jpg",
+        // })
 
         return (
           <header>

@@ -34,15 +34,15 @@ const RailsWrapper = styled(Flex)`
   `};
 `
 
-@track(null, {
-  dispatch: data => Events.postEvent(data),
-})
+// @track(null, {
+//   dispatch: data => Events.postEvent(data),
+// })
 export class CollectionsRail extends React.Component<CollectionRailsProps> {
-  @track({
-    action_type: Schema.ActionType.Impression,
-    context_module: Schema.ContextModule.CollectionsRail,
-    context_page_owner_type: Schema.OwnerType.Article,
-  })
+  // @track({
+  //   action_type: Schema.ActionType.Impression,
+  //   context_module: Schema.ContextModule.CollectionsRail,
+  //   context_page_owner_type: Schema.OwnerType.Article,
+  // })
   trackImpression() {
     // noop
   }

@@ -33,11 +33,11 @@ interface CollectionAppProps extends SystemContextProps {
   tracking: TrackingProp
 }
 
-@track<CollectionAppProps>(props => ({
-  context_module: Schema.ContextModule.CollectionDescription,
-  context_page_owner_slug: props.viewer && props.viewer.slug,
-  context_page_owner_id: props.viewer && props.viewer.id,
-}))
+// @track<CollectionAppProps>(props => ({
+//   context_module: Schema.ContextModule.CollectionDescription,
+//   context_page_owner_slug: props.viewer && props.viewer.slug,
+//   context_page_owner_id: props.viewer && props.viewer.slug,
+// }))
 export class CollectionApp extends Component<CollectionAppProps> {
   collectionNotFound = collection => {
     if (!collection) {
@@ -51,7 +51,14 @@ export class CollectionApp extends Component<CollectionAppProps> {
 
   render() {
     const { viewer, location, relay } = this.props
-    const { title, slug, headerImage, description, artworks } = viewer
+    const {
+      title,
+      slug,
+      headerImage,
+      description,
+      artworksConnection,
+      filtered_artworks,
+    } = viewer
     const collectionHref = `${sd.APP_URL}/collection/${slug}`
 
     const metadataDescription = description
@@ -63,31 +70,34 @@ export class CollectionApp extends Component<CollectionAppProps> {
 
     return (
       <AppContainer>
-        <FrameWithRecentlyViewed>
-          <Title>{`${title} - For Sale on Artsy`}</Title>
-          <Meta name="description" content={metadataDescription} />
-          <Meta property="og:url" content={collectionHref} />
-          <Meta property="og:image" content={headerImage} />
-          <Meta property="og:description" content={metadataDescription} />
-          <Meta property="twitter:description" content={metadataDescription} />
-          <Link rel="canonical" href={collectionHref} />
-          <BreadCrumbList
-            items={[
-              { path: "/collections", name: "Collections" },
-              { path: `/collection/${slug}`, name: title },
-            ]}
-          />
-          {artworks && <SeoProductsForArtworks artworks={artworks} />}
-          <CollectionHeader
-            collection={viewer as any}
-            artworks={artworks as any}
-          />
-          {showCollectionHubs && (
-            <CollectionsHubRails linkedCollections={viewer.linkedCollections} />
-          )}
-          <Box>
+        {/*<FrameWithRecentlyViewed>*/}
+        <Title>{`${title} - For Sale on Artsy`}</Title>
+        <Meta name="description" content={metadataDescription} />
+        <Meta property="og:url" content={collectionHref} />
+        <Meta property="og:image" content={headerImage} />
+        <Meta property="og:description" content={metadataDescription} />
+        <Meta property="twitter:description" content={metadataDescription} />
+        <Link rel="canonical" href={collectionHref} />
+        <BreadCrumbList
+          items={[
+            { path: "/collections", name: "Collections" },
+            { path: `/collection/${slug}`, name: title },
+          ]}
+        />
+        {artworksConnection && (
+          <SeoProductsForArtworks artworksConnection={artworksConnection} />
+        )}
+        <CollectionHeader
+          collection={viewer as any}
+          artworks={artworksConnection as any}
+        />
+        {showCollectionHubs && (
+          <CollectionsHubRails linkedCollections={viewer.linkedCollections} />
+        )}
+        <Box>
+          {/**
             <ArtworkFilterContextProvider
-              filters={location.query}
+              // filters={location.query}
               sortOptions={[
                 { value: "-decayed_merch", text: "Default" },
                 { value: "sold,-has_price,-prices", text: "Price (desc.)" },
@@ -118,19 +128,20 @@ export class CollectionApp extends Component<CollectionAppProps> {
                 }}
               />
             </ArtworkFilterContextProvider>
-          </Box>
-          {viewer.linkedCollections.length === 0 && (
-            <>
-              <Separator mt={6} mb={3} />
-              <Box mt="3">
-                <RelatedCollectionsRail
-                  collections={viewer.relatedCollections}
-                  title={viewer.title}
-                />
-              </Box>
-            </>
-          )}
-        </FrameWithRecentlyViewed>
+             */}
+        </Box>
+        {viewer.linkedCollections.length === 0 && (
+          <>
+            <Separator mt={6} mb={3} />
+            <Box mt="3">
+              <RelatedCollectionsRail
+                collections={viewer.relatedCollections}
+                title={viewer.title}
+              />
+            </Box>
+          </>
+        )}
+        {/*</FrameWithRecentlyViewed> **/}
       </AppContainer>
     )
   }

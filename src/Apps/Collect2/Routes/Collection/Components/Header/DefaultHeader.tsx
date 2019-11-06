@@ -23,9 +23,10 @@ export const CollectionDefaultHeader: FC<CollectionDefaultHeaderProps> = ({
   collection_id,
   collection_slug,
 }) => {
-  const { hits: artworks } = headerArtworks
+  console.log("headerArtworks", headerArtworks)
+  const { edges } = headerArtworks
 
-  if (!artworks) {
+  if (!edges) {
     return null
   }
 
@@ -36,7 +37,7 @@ export const CollectionDefaultHeader: FC<CollectionDefaultHeaderProps> = ({
    *  used for merchandisable artists and those used for this component.
    *  Slice the artworks array to get just the first 10 in the result set.
    */
-  const duplicatedArtworks = artworks.slice(0, 10)
+  const duplicatedArtworks = edges.slice(0, 10)
   const artworksToRender = getHeaderArtworks(
     duplicatedArtworks,
     viewportWidth,
@@ -130,19 +131,21 @@ export const CollectionDefaultHeaderFragmentContainer = createFragmentContainer(
   {
     headerArtworks: graphql`
       fragment DefaultHeader_headerArtworks on FilterArtworksConnection {
-        hits {
-          href
-          slug
-          image {
-            small: resized(height: 160) {
-              url
-              width
-              height
-            }
-            large: resized(height: 220) {
-              url
-              width
-              height
+        edges {
+          node {
+            href
+            slug
+            image {
+              small: resized(height: 160) {
+                url
+                width
+                height
+              }
+              large: resized(height: 220) {
+                url
+                width
+                height
+              }
             }
           }
         }
@@ -166,11 +169,11 @@ const HeaderArtworks = styled(Flex)`
   bottom: 0;
 
   & a:first-child > img {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   & a:last-child > img {
-    margin-left: 0px;
+    margin-left: 0;
   }
 `
 const HeaderImage = styled(Image)`

@@ -17,9 +17,9 @@ interface RelatedCollectionsRailProps {
   title?: string
 }
 
-@track(null, {
-  dispatch: data => Events.postEvent(data),
-})
+// @track(null, {
+//   dispatch: data => Events.postEvent(data),
+// })
 export class RelatedCollectionsRail extends React.Component<
   RelatedCollectionsRailProps
 > {
